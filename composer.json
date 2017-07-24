@@ -1,0 +1,20 @@
+{
+    "name": "idimensionz/linode-api-v4",
+    "description": "PHP client for Linode API v4",
+    "type": "library",
+    "require": {
+        "idimensionz/http-client": "v1.0.1.x-dev"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.7.x-dev",
+        "codeclimate/php-test-reporter": "^0.4.4",
+        "phake/phake": "<3.0.0"
+    },
+    "license": "MIT License",
+    "authors": [
+        {
+            "name": "Jim Mullen",
+            "email": "info@idimensionz.com"
+        }
+    ]
+}
