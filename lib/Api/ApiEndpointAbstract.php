@@ -152,4 +152,3 @@ abstract class ApiEndpointAbstract
         $this->httpClient = $httpClient;
     }
 }
- 

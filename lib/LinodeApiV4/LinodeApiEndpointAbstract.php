@@ -52,7 +52,7 @@ class LinodeApiEndpointAbstract extends ApiEndpointAbstract
     public function createModel()
     {
         $className = $this->getModelClassName();
-        $model = new ($className);
+        $model = new $className;
 
         return $model;
     }
