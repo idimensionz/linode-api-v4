@@ -33,7 +33,7 @@ use iDimensionz\HttpClient\HttpClientInterface;
 
 class LinodeApiEndpointAbstract extends ApiEndpointAbstract
 {
-    const LINODE_API_V4_URI = 'https://api.linode.com/v4/linode/';
+    const LINODE_API_V4_URI = 'https://api.linode.com/v4/';
 
     /**
      * @var string
