@@ -193,12 +193,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/idimensionz/http-client.git",
-                "reference": "440bb279ba17ac3cb5e7835e61ec05369d5b579b"
+                "reference": "8abb2f88608205f44cb06fb59d0543f21b2e79a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/idimensionz/http-client/zipball/440bb279ba17ac3cb5e7835e61ec05369d5b579b",
-                "reference": "440bb279ba17ac3cb5e7835e61ec05369d5b579b",
+                "url": "https://api.github.com/repos/idimensionz/http-client/zipball/8abb2f88608205f44cb06fb59d0543f21b2e79a2",
+                "reference": "8abb2f88608205f44cb06fb59d0543f21b2e79a2",
                 "shasum": ""
             },
             "require": {
@@ -211,6 +211,11 @@
                 "phpunit/phpunit": "5.7.x-dev"
             },
             "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "iDimensionz\\HttpClient\\": "lib/"
+                }
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT License"
@@ -222,7 +227,7 @@
                 }
             ],
             "description": "PHP HTTP client interface and implementations",
-            "time": "2017-07-24 00:40:03"
+            "time": "2017-07-25 01:46:51"
         },
         {
             "name": "psr/http-message",
