@@ -29,7 +29,7 @@
 namespace iDimensionz\LinodeApiV4;
 
 use iDimensionz\Api\ApiEndpointAbstract;
-use iDimensionz\Api\HttpClientInterface;
+use iDimensionz\HttpClient\HttpClientInterface;
 
 class LinodeApiEndpointAbstract extends ApiEndpointAbstract
 {
@@ -40,10 +40,15 @@ class LinodeApiEndpointAbstract extends ApiEndpointAbstract
      */
     private $modelClassName;
 
-    public function __construct($httpClient, $endpoint)
+    /**
+     * LinodeApiEndpointAbstract constructor.
+     * @param string                    $endpoint
+     * @param HttpClientInterface|null  $httpClient
+     */
+    public function __construct($endpoint, $httpClient = null)
     {
         $fullyQualifiedEndpoint = self::LINODE_API_V4_URI . $endpoint;
-        parent::__construct($httpClient, $fullyQualifiedEndpoint);
+        parent::__construct($fullyQualifiedEndpoint, $httpClient);
     }
 
     /**

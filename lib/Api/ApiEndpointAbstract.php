@@ -28,6 +28,7 @@
 
 namespace iDimensionz\Api;
 
+use iDimensionz\HttpClient\Guzzle\GuzzleHttpClient;
 use iDimensionz\HttpClient\HttpClientInterface;
 use iDimensionz\HttpClient\HttpResponse;
 
@@ -43,13 +44,13 @@ abstract class ApiEndpointAbstract
     private $httpClient;
 
     /**
-     * @param HttpClientInterface $httpClient
-     * @param string              $endpoint
+     * @param string                    $endpoint
+     * @param HttpClientInterface|null  $httpClient
      */
-    public function __construct($httpClient, $endpoint)
+    public function __construct($endpoint, $httpClient = null)
     {
-        $this->setHttpClient($httpClient);
         $this->setEndpoint($endpoint);
+        $this->setHttpClient($httpClient);
     }
 
     /**
@@ -142,8 +143,11 @@ abstract class ApiEndpointAbstract
     /**
      * @param HttpClientInterface $httpClient
      */
-    public function setHttpClient($httpClient)
+    public function setHttpClient($httpClient = null)
     {
+        if (is_null($httpClient)) {
+            $httpClient = new GuzzleHttpClient();
+        }
         if (!$httpClient instanceof HttpClientInterface) {
             throw new \InvalidArgumentException(
                 __METHOD__ . '/httpClient parameter must implement the HttpClientInterface.'
