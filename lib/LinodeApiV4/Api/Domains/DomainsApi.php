@@ -37,7 +37,7 @@ class DomainsApi extends LinodeApiEndpointAbstract
 
     const DOMAIN_MODEL_CLASS_NAME = '\iDimensionz\LinodeApiV4\Api\Domains\DomainModel';
 
-    public function __construct(HttpClientInterface $httpClient)
+    public function __construct(HttpClientInterface $httpClient = null)
     {
         parent::__construct(self::ENDPOINT, $httpClient);
         $this->setModelClassName(self::DOMAIN_MODEL_CLASS_NAME);
