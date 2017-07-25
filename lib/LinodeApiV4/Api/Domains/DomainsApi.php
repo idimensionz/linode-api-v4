@@ -35,14 +35,32 @@ class DomainsApi extends LinodeApiEndpointAbstract
 {
     const ENDPOINT = 'domains';
 
+    const DOMAIN_MODEL_CLASS_NAME = '\iDimensionz\LinodeApiV4\Api\Domains\DomainModel';
+
     public function __construct($endpoint, HttpClientInterface $httpClient)
     {
         parent::__construct($endpoint, $httpClient);
+        $this->setModelClassName(self::DOMAIN_MODEL_CLASS_NAME);
     }
 
+    /**
+     * Get all domains for the account.
+     * @todo implement filters based on filterable elements.
+     * @return DomainModel[]
+     */
     public function getAllDomains()
     {
-        $this->getHttpClient()->get($this->getEndpoint());
+        $httpResponse = $this->getHttpClient()->get($this->getEndpoint());
+print_r($httpResponse, true);
         // @todo create an array of domain models from the HTTP response.
+        $data = $httpResponse->getBody();
+        $domainData = $data['domains'];
+        $domainModels = [];
+        foreach ($domainData as $domainDatum) {
+            $domainModel = $this->hydrate($domainDatum);
+            $domainModels[] = $domainModel;
+        }
+
+        return $domainModels;
     }
 }

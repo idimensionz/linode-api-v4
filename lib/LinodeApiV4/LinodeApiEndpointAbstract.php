@@ -35,9 +35,47 @@ class LinodeApiEndpointAbstract extends ApiEndpointAbstract
 {
     const LINODE_API_V4_URI = 'https://api.linode.com/v4/linode/';
 
+    /**
+     * @var string
+     */
+    private $modelClassName;
+
     public function __construct($httpClient, $endpoint)
     {
         $fullyQualifiedEndpoint = self::LINODE_API_V4_URI . $endpoint;
         parent::__construct($httpClient, $fullyQualifiedEndpoint);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function createModel()
+    {
+        $className = $this->getModelClassName();
+        $model = new ($className);
+
+        return $model;
+    }
+
+    /**
+     * @return string
+     */
+    public function getModelClassName()
+    {
+        return $this->modelClassName;
+    }
+
+    /**
+     * @param string $modelClassName
+     */
+    public function setModelClassName($modelClassName)
+    {
+        $modelClassName = (string) $modelClassName;
+        if (!class_exists($modelClassName)) {
+            throw new \InvalidArgumentException(
+                __METHOD__ . '/modelClassName must be the fully qualified class name of an existing class.'
+            );
+        }
+        $this->modelClassName = $modelClassName;
     }
 }
