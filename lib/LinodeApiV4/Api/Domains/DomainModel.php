@@ -28,9 +28,6 @@
 
 namespace iDimensionz\LinodeApiV4\Api\Domains;
 
-use LinodeApiV4\Api\Domains\DomainStatus;
-use LinodeApiV4\Api\Domains\DomainType;
-
 class DomainModel
 {
     const STATUS_ACTIVE = 'active';

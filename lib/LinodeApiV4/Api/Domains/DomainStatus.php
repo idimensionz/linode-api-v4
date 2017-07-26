@@ -26,7 +26,7 @@
  * SOFTWARE.
 */
 
-namespace LinodeApiV4\Api\Domains;
+namespace iDimensionz\LinodeApiV4\Api\Domains;
 
 class DomainStatus
 {
