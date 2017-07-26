@@ -51,9 +51,8 @@ class DomainsApi extends LinodeApiEndpointAbstract
     public function getAllDomains()
     {
         $httpResponse = $this->getHttpClient()->get($this->getEndpoint());
-print_r($httpResponse, true);
         // @todo create an array of domain models from the HTTP response.
-        $data = $httpResponse->getBody();
+        $data = $httpResponse->getBodyJsonAsArray();
         $domainData = $data['domains'];
         $domainModels = [];
         foreach ($domainData as $domainDatum) {
@@ -62,5 +61,32 @@ print_r($httpResponse, true);
         }
 
         return $domainModels;
+    }
+
+    /**
+     * @param array $data
+     * @return DomainModel
+     */
+    public function hydrate($data)
+    {
+        /**
+         * @var DomainModel $model
+         */
+        $model = $this->createModel();
+        $model->setType($data['type']);
+        $model->setStatus($data['status']);
+        $model->setDescription($data['description']);
+        $model->setAxfrIps($data['axfr_ips']);
+        $model->setTimeToLiveInterval($data['ttl_sec']);
+        $model->setExpireInterval($data['expire_sec']);
+        $model->setMasterIps($data['master_ips']);
+        $model->setRefreshInterval($data['refresh_sec']);
+        $model->setDomainName($data['domain']);
+        $model->setRetryInterval($data['retry_sec']);
+        $model->setGroup($data['group']);
+        $model->setId($data['id']);
+        $model->setSoaContactEmail($data['soa_email']);
+
+        return $model;
     }
 }
