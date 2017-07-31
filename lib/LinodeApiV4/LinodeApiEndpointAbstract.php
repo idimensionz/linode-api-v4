@@ -30,6 +30,7 @@ namespace iDimensionz\LinodeApiV4;
 
 use iDimensionz\Api\ApiEndpointAbstract;
 use iDimensionz\HttpClient\HttpClientInterface;
+use iDimensionz\LinodeApiV4\Filters\FilterAbstract;
 
 class LinodeApiEndpointAbstract extends ApiEndpointAbstract
 {
@@ -39,6 +40,10 @@ class LinodeApiEndpointAbstract extends ApiEndpointAbstract
      * @var string
      */
     private $modelClassName;
+    /**
+     * @var FilterAbstract $filter
+     */
+    private $filter;
 
     /**
      * LinodeApiEndpointAbstract constructor.
@@ -49,6 +54,7 @@ class LinodeApiEndpointAbstract extends ApiEndpointAbstract
     {
         $fullyQualifiedEndpoint = self::LINODE_API_V4_URI . $endpoint;
         parent::__construct($fullyQualifiedEndpoint, $httpClient);
+        $this->setFilter(null);
     }
 
     /**
@@ -82,5 +88,39 @@ class LinodeApiEndpointAbstract extends ApiEndpointAbstract
             );
         }
         $this->modelClassName = $modelClassName;
+    }
+
+    /**
+     * @return FilterAbstract
+     */
+    protected function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * @param FilterAbstract $filter
+     */
+    public function setFilter($filter)
+    {
+        if (!$filter instanceof FilterAbstract) {
+            throw new \InvalidArgumentException(__METHOD__ . '/filter must be an instance of FilterAbstract.');
+        }
+        $this->filter = $filter;
+    }
+
+    /**
+     * @param string $command
+     * @param array  $options
+     * @return \iDimensionz\HttpClient\HttpResponse
+     */
+    public function get($command, $options = [])
+    {
+        $filter = $this->getFilter();
+        if (!empty($filter)) {
+            $filterHeader = $this->filter->getHeader();
+            $options[] = $filterHeader;
+        }
+        return parent::get($command, $options);
     }
 }

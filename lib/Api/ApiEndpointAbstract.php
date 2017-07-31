@@ -55,14 +55,15 @@ abstract class ApiEndpointAbstract
 
     /**
      * @param string $command
+     * @param array  $options
      * @return HttpResponse
      */
-    public function get($command)
+    public function get($command, $options = [])
     {
         if (!empty($command)) {
             $command = "/{$command}";
         }
-        $httpResponse = $this->getHttpClient()->get($this->getEndpoint() . $command);
+        $httpResponse = $this->getHttpClient()->get($this->getEndpoint() . $command, $options);
         return $httpResponse;
     }
 
