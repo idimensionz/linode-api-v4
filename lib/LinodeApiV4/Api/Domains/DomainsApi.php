@@ -50,7 +50,7 @@ class DomainsApi extends LinodeApiEndpointAbstract
      */
     public function getAllDomains()
     {
-        $httpResponse = $this->getHttpClient()->get($this->getEndpoint());
+        $httpResponse = $this->get($this->getEndpoint());
         // @todo create an array of domain models from the HTTP response.
         $data = $httpResponse->getBodyJsonAsArray();
         $domainData = $data['domains'];
