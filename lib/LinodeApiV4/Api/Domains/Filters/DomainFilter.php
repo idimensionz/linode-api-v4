@@ -35,9 +35,9 @@ class DomainFilter extends FilterAbstract
     public function __construct()
     {
         $filterFields = [
-            ['domain'       =>  'string'],
-            ['master_ips'   =>  'array'],
-            ['group'        =>  'string']
+            'domain'       =>  FilterAbstract::FILTER_FIELD_TYPE_STRING,
+            'master_ips'   =>  FilterAbstract::FILTER_FIELD_TYPE_ARRAY_STRING,
+            'group'        =>  FilterAbstract::FILTER_FIELD_TYPE_STRING
         ];
         $this->setFilterFields($filterFields);
         parent::__construct();

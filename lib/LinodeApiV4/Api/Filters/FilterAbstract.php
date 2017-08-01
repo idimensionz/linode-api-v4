@@ -68,8 +68,8 @@ abstract class FilterAbstract implements \JsonSerializable
      */
     public function getHeader()
     {
-        $header = ['X-Filter' => json_encode($this)];
-        $headerString = json_encode($header);
+        $header = 'X-Filter: ' . json_encode($this);
+        $headerString = $header;
 
         return $headerString;
     }
@@ -228,16 +228,20 @@ abstract class FilterAbstract implements \JsonSerializable
     public function jsonSerialize()
     {
         $returnData = [];
-        if (self::CONDITION_OPERATOR_OR == $this->getConditionOperator()) {
-            foreach ($this->getConditions() as $condition) {
-                $data[] = json_encode($condition);
+        $conditions = $this->getConditions();
+        $data = [];
+        if (is_array($conditions) && !empty($conditions)) {
+            if (self::CONDITION_OPERATOR_OR == $this->getConditionOperator()) {
+                foreach ($conditions as $condition) {
+                    $data[] = json_encode($condition);
+                }
+                $returnData = ['+or', $data];
+            } elseif (self::CONDITION_OPERATOR_AND == $this->getConditionOperator()) {
+                foreach ($conditions as $condition) {
+                    $data = array_merge($data, json_encode($condition));
+                }
+                $returnData = ['+and', $data];
             }
-            $returnData = ['+or', $data];
-        } elseif (self::CONDITION_OPERATOR_AND == $this->getConditionOperator()) {
-            foreach ($this->getConditions() as $condition) {
-                $data = array_merge($data, json_encode($condition));
-            }
-            $returnData = ['+and', $data];
         }
 
         return $returnData;
