@@ -28,8 +28,8 @@
 
 namespace iDimensionz\LinodeApiV4\Api\Filters;
 
-use iDimensionz\LinodeApiV4\Filters\FilterAbstract;
-use iDimensionz\LinodeApiV4\Filters\FilterConditionAbstract;
+use iDimensionz\LinodeApiV4\Api\Filters\FilterAbstract;
+use iDimensionz\LinodeApiV4\Api\Filters\FilterConditionAbstract;
 
 class FilterConditionFilter extends FilterConditionAbstract
 {

@@ -28,7 +28,7 @@
 
 namespace iDimensionz\LinodeApiV4\Api\Filters\FilterFieldCondition;
 
-use iDimensionz\LinodeApiV4\Filters\FilterConditionAbstract;
+use iDimensionz\LinodeApiV4\Api\Filters\FilterConditionAbstract;
 
 class FilterFieldConditionAbstract extends FilterConditionAbstract
 {
