@@ -28,8 +28,7 @@
 
 namespace iDimensionz\LinodeApiV4\Api\Domains\Filters;
 
-
-use iDimensionz\LinodeApiV4\Filters\FilterAbstract;
+use iDimensionz\LinodeApiV4\Api\Filters\FilterAbstract;
 
 class DomainFilter extends FilterAbstract
 {

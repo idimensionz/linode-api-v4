@@ -30,7 +30,7 @@ namespace iDimensionz\LinodeApiV4;
 
 use iDimensionz\Api\ApiEndpointAbstract;
 use iDimensionz\HttpClient\HttpClientInterface;
-use iDimensionz\LinodeApiV4\Filters\FilterAbstract;
+use iDimensionz\LinodeApiV4\Api\Filters\FilterAbstract;
 
 class LinodeApiEndpointAbstract extends ApiEndpointAbstract
 {
@@ -101,9 +101,9 @@ class LinodeApiEndpointAbstract extends ApiEndpointAbstract
     /**
      * @param FilterAbstract $filter
      */
-    public function setFilter($filter)
+    public function setFilter($filter = null)
     {
-        if (!$filter instanceof FilterAbstract) {
+        if (!is_null($filter) && !$filter instanceof FilterAbstract) {
             throw new \InvalidArgumentException(__METHOD__ . '/filter must be an instance of FilterAbstract.');
         }
         $this->filter = $filter;
