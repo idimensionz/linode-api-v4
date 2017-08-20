@@ -240,7 +240,8 @@ abstract class FilterAbstract implements \JsonSerializable
                 foreach ($conditions as $condition) {
                     $data = array_merge($data, json_encode($condition));
                 }
-                $returnData = ['+and', $data];
+                // @todo Add logic to only add '+and' for complex filters. (i.e. single filters don't need '+and').
+                // $returnData = ['+and', $data];
             }
         }
 

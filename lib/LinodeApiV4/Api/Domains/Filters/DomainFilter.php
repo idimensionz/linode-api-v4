@@ -29,17 +29,52 @@
 namespace iDimensionz\LinodeApiV4\Api\Domains\Filters;
 
 use iDimensionz\LinodeApiV4\Api\Filters\FilterAbstract;
+use iDimensionz\LinodeApiV4\Api\Filters\FilterFieldCondition\FilterFieldConditionString;
 
 class DomainFilter extends FilterAbstract
 {
+    const FILTER_FIELD_DOMAIN = 'domain';
+    const FILTER_FIELD_GROUP = 'group';
+    const FILTER_FIELD_MASTER_IPS = 'master_ips';
+
     public function __construct()
     {
         $filterFields = [
-            'domain'       =>  FilterAbstract::FILTER_FIELD_TYPE_STRING,
-            'master_ips'   =>  FilterAbstract::FILTER_FIELD_TYPE_ARRAY_STRING,
-            'group'        =>  FilterAbstract::FILTER_FIELD_TYPE_STRING
+            self::FILTER_FIELD_DOMAIN       =>  FilterAbstract::FILTER_FIELD_TYPE_STRING,
+            self::FILTER_FIELD_MASTER_IPS   =>  FilterAbstract::FILTER_FIELD_TYPE_ARRAY_STRING,
+            self::FILTER_FIELD_GROUP        =>  FilterAbstract::FILTER_FIELD_TYPE_STRING
         ];
         $this->setFilterFields($filterFields);
         parent::__construct();
+    }
+
+    /**
+     * @param string $group
+     */
+    public function addGroupFilter($group)
+    {
+        if (!empty($group)) {
+            $this->addCondition(new FilterFieldConditionString(self::FILTER_FIELD_GROUP, $group));
+        }
+    }
+
+    /**
+     * @param string $domain
+     */
+    public function addDomainFilter($domain)
+    {
+        if (!empty($domain)) {
+            $this->addCondition(new FilterFieldConditionString(self::FILTER_FIELD_DOMAIN, $domain));
+        }
+    }
+
+    /**
+     * @param array $masterIps
+     */
+    public function addMasterIpsFilter($masterIps)
+    {
+        if (is_array($masterIps) && !empty($masterIps)) {
+            // @todo implement FilterFieldConditionArray class
+        }
     }
 }
