@@ -114,13 +114,15 @@ class LinodeApiEndpointAbstract extends ApiEndpointAbstract
      * @param array  $options
      * @return \iDimensionz\HttpClient\HttpResponse
      */
-    public function get($command, $options = [])
+    public function get($command = '', $options = [])
     {
         $filter = $this->getFilter();
         if (!empty($filter)) {
             $filterHeader = $this->filter->getHeader();
-            $options[] = $filterHeader;
+            $options['headers'] = (isset($options['headers']) && is_array($options['headers']) ? $options['headers'] : []);
+            $options['headers'] = array_merge($options['headers'] , $filterHeader);
         }
+
         return parent::get($command, $options);
     }
 }
