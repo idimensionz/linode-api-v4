@@ -58,7 +58,7 @@ abstract class ApiEndpointAbstract
      * @param array  $options
      * @return HttpResponse
      */
-    public function get($command, $options = [])
+    public function get($command = '', $options = [])
     {
         if (!empty($command)) {
             $command = "/{$command}";
@@ -69,7 +69,7 @@ abstract class ApiEndpointAbstract
 
     /**
      * @param string $command
-     * @param string $data JSON encoded data
+     * @param string|array $data JSON encoded data
      * @return HttpResponse
      */
     public function patch($command, $data)
