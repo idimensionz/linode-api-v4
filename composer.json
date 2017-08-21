@@ -12,7 +12,8 @@
     },
     "autoload": {
         "psr-4": {
-            "iDimensionz\\": "src/"
+            "iDimensionz\\": "src/",
+            "iDimensionz\\Tests\\": "tests/"
         }
     },
     "license": "MIT License",
