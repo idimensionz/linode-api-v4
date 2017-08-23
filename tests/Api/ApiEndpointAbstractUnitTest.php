@@ -138,7 +138,7 @@ class ApiEndpointAbstractUnitTest extends TestCase
     public function testPatchWithEmptyCommandParameter()
     {
         $this->hasApiEndpointAbstract($this->validEndpoint);
-        $validData = ['some-data'];
+        $validData = json_encode(['some-data']);
         $actualResponse = $this->apiEndpointAbstract->patch('', $validData);
         \Phake::verify($this->httpClient)->patch($this->validEndpoint, ['body' => $validData]);
         $this->assertInstanceOf(self::HTTP_RESPONSE, $actualResponse);
@@ -148,9 +148,45 @@ class ApiEndpointAbstractUnitTest extends TestCase
     {
         $this->hasApiEndpointAbstract($this->validEndpoint);
         $validCommand = 'some-command';
-        $validData = ['valid-data'];
+        $validData = json_encode(['valid-data']);
         $actualResponse = $this->apiEndpointAbstract->patch($validCommand, $validData);
         \Phake::verify($this->httpClient)->patch($this->validEndpoint . '/' . $validCommand, ['body' => $validData]);
+        $this->assertInstanceOf(self::HTTP_RESPONSE, $actualResponse);
+    }
+
+    public function testPostWithEmptyCommandParameter()
+    {
+        $this->hasApiEndpointAbstract($this->validEndpoint);
+        $validData = json_encode(['some-data']);
+        $actualResponse = $this->apiEndpointAbstract->post('', $validData);
+        \Phake::verify($this->httpClient)->post($this->validEndpoint, ['body' => $validData]);
+        $this->assertInstanceOf(self::HTTP_RESPONSE, $actualResponse);
+    }
+
+    public function testPostWithCommandParameter()
+    {
+        $this->hasApiEndpointAbstract($this->validEndpoint);
+        $validCommand = 'some-command';
+        $validData = json_encode(['valid-data']);
+        $actualResponse = $this->apiEndpointAbstract->post($validCommand, $validData);
+        \Phake::verify($this->httpClient)->post($this->validEndpoint . '/' . $validCommand, ['body' => $validData]);
+        $this->assertInstanceOf(self::HTTP_RESPONSE, $actualResponse);
+    }
+
+    public function testDeleteWithEmptyCommandParameter()
+    {
+        $this->hasApiEndpointAbstract($this->validEndpoint);
+        $actualResponse = $this->apiEndpointAbstract->delete('');
+        \Phake::verify($this->httpClient)->delete($this->validEndpoint);
+        $this->assertInstanceOf(self::HTTP_RESPONSE, $actualResponse);
+    }
+
+    public function testDeleteWithCommandParameter()
+    {
+        $this->hasApiEndpointAbstract($this->validEndpoint);
+        $validCommand = 'some-command';
+        $actualResponse = $this->apiEndpointAbstract->delete($validCommand);
+        \Phake::verify($this->httpClient)->delete($this->validEndpoint . '/' . $validCommand);
         $this->assertInstanceOf(self::HTTP_RESPONSE, $actualResponse);
     }
 
@@ -165,6 +201,10 @@ class ApiEndpointAbstractUnitTest extends TestCase
         \Phake::when($this->httpClient)->get(\Phake::anyParameters())
             ->thenReturn($this->httpResponse);
         \Phake::when($this->httpClient)->patch(\Phake::anyParameters())
+            ->thenReturn($this->httpResponse);
+        \Phake::when($this->httpClient)->post(\Phake::anyParameters())
+            ->thenReturn($this->httpResponse);
+        \Phake::when($this->httpClient)->delete(\Phake::anyParameters())
             ->thenReturn($this->httpResponse);
     }
 

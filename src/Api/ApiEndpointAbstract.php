@@ -69,7 +69,7 @@ abstract class ApiEndpointAbstract
 
     /**
      * @param string $command
-     * @param string|array $data JSON encoded data
+     * @param string $data JSON encoded data
      * @return HttpResponse
      */
     public function patch($command, $data)
