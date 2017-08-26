@@ -30,5 +30,146 @@ namespace iDimensionz\LinodeApiV4\Api\Linode\Distributions;
 
 class DistributionModel
 {
+    /**
+     * @var string
+     */
+    private $id;
+    /**
+     * @var string
+     */
+    private $vendor;
+    /**
+     * @var \DateTime
+     */
+    private $created;
+    /**
+     * @var bool
+     */
+    private $deprecated;
+    /**
+     * @var int
+     */
+    private $minimumStorageSize;
+    /**
+     * @var bool
+     */
+    private $isX64;
+    /**
+     * @var string
+     */
+    private $label;
 
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $id
+     */
+    public function setId($id)
+    {
+        $this->id = (string) $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVendor(): string
+    {
+        return $this->vendor;
+    }
+
+    /**
+     * @param string $vendor
+     */
+    public function setVendor($vendor)
+    {
+        $this->vendor = (string) $vendor;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreated(): \DateTime
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param \DateTime $created
+     */
+    public function setCreated($created)
+    {
+        $dateTime = new \DateTime($created);
+        // @todo Add validation.
+        $this->created = $dateTime;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDeprecated(): bool
+    {
+        return $this->deprecated;
+    }
+
+    /**
+     * @param bool $deprecated
+     */
+    public function setDeprecated($deprecated)
+    {
+        $this->deprecated = (bool) $deprecated;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMinimumStorageSize(): int
+    {
+        return $this->minimumStorageSize;
+    }
+
+    /**
+     * @param int $minimumStorageSize
+     */
+    public function setMinimumStorageSize($minimumStorageSize)
+    {
+        $this->minimumStorageSize = (int) $minimumStorageSize;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isX64(): bool
+    {
+        return $this->isX64;
+    }
+
+    /**
+     * @param bool $isX64
+     */
+    public function setIsX64(bool $isX64)
+    {
+        $this->isX64 = (bool) $isX64;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return $this->label;
+    }
+
+    /**
+     * @param string $label
+     */
+    public function setLabel(string $label)
+    {
+        $this->label = $label;
+    }
 }

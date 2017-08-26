@@ -62,8 +62,18 @@ class DistributionsApi extends LinodeApiEndpointAbstract
 
     private function hydrate($data)
     {
+        /**
+         * @var DistributionModel $model
+         */
         $model = $this->createModel();
-
+        $model->setId($data['id']);
+        $model->setVendor($data['vendor']);
+        $model->setCreated($data['created']);
+        $model->setDeprecated($data['deprecated']);
+        $model->setMinimumStorageSize($data['minimum_storage_size']);
+        $model->setIsX64($data['x64']);
+        $model->setLabel($data['label']);
+        
         return $model;
     }
 }
