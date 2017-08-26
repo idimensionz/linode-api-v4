@@ -69,7 +69,7 @@ class DomainsApi extends LinodeApiEndpointAbstract
      * @param array $data
      * @return DomainModel
      */
-    public function hydrate($data)
+    private function hydrate($data)
     {
         /**
          * @var DomainModel $model
