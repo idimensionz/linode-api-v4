@@ -116,8 +116,9 @@ class LinodeApiEndpointAbstract extends ApiEndpointAbstract
      */
     public function get($command = '', $options = [])
     {
+        /** @var FilterAbstract $filter */
         $filter = $this->getFilter();
-        if (!empty($filter)) {
+        if (!empty($filter->getConditions())) {
             $filterHeader = $this->filter->getHeader();
             $options['headers'] = (isset($options['headers']) && is_array($options['headers']) ? $options['headers'] : []);
             $options['headers'] = array_merge($options['headers'] , $filterHeader);
