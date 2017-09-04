@@ -40,6 +40,7 @@ abstract class FilterAbstract implements \JsonSerializable
     const FILTER_FIELD_TYPE_STRING = 'String';
     const FILTER_FIELD_TYPE_ENUM = 'Enum';
     const FILTER_FIELD_TYPE_ARRAY_STRING = 'Array[string]';
+    const FILTER_FIELD_TYPE_BOOLEAN = 'Boolean';
 
     /**
      * @var array   Keys and types specific to the actual filter.

@@ -73,7 +73,7 @@ class DistributionsApi extends LinodeApiEndpointAbstract
         $model->setMinimumStorageSize($data['minimum_storage_size']);
         $model->setIsX64($data['x64']);
         $model->setLabel($data['label']);
-        
+
         return $model;
     }
 }
