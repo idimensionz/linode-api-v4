@@ -60,6 +60,20 @@ class DistributionsApi extends LinodeApiEndpointAbstract
         return $distributionModels;
     }
 
+    /**
+     * @param string $id
+     * @return DistributionModel
+     */
+    public function getById($id)
+    {
+        $httpResponse = $this->get($id);
+        $data = $httpResponse->getBodyJsonAsArray();
+
+        $distributionModel = $this->hydrate($data);
+
+        return $distributionModel;
+    }
+
     private function hydrate($data)
     {
         /**
