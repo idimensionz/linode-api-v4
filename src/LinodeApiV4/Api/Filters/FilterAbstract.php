@@ -65,14 +65,13 @@ abstract class FilterAbstract implements \JsonSerializable
     }
 
     /**
-     * @return string
+     * @return array Array containing the X-Filter values.
      */
     public function getHeader()
     {
-        $header = 'X-Filter: ' . json_encode($this);
-        $headerString = $header;
+        $header = ['X-Filter' => json_encode($this)];
 
-        return $headerString;
+        return $header;
     }
 
     /**
@@ -238,9 +237,7 @@ abstract class FilterAbstract implements \JsonSerializable
                 }
                 $returnData = ['+or', $data];
             } elseif (self::CONDITION_OPERATOR_AND == $this->getConditionOperator()) {
-                foreach ($conditions as $condition) {
-                    $data = array_merge($data, json_encode($condition));
-                }
+                $returnData = $conditions;
                 // @todo Add logic to only add '+and' for complex filters. (i.e. single filters don't need '+and').
                 // $returnData = ['+and', $data];
             }
