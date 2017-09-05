@@ -98,9 +98,9 @@ class KernelModel
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
-        $this->description = $description;
+        $this->description = (string) $description;
     }
 
     /**
@@ -146,9 +146,9 @@ class KernelModel
     /**
      * @param string $label
      */
-    public function setLabel(string $label)
+    public function setLabel($label)
     {
-        $this->label = $label;
+        $this->label = (string) $label;
     }
 
     /**
@@ -162,9 +162,9 @@ class KernelModel
     /**
      * @param string $version
      */
-    public function setVersion(string $version)
+    public function setVersion($version)
     {
-        $this->version = $version;
+        $this->version = (string) $version;
     }
 
     /**
