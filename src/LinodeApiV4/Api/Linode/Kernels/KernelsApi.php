@@ -1,7 +1,7 @@
 <?php
 /*
  * iDimensionz/{linode-api-v4}
- * DistributionsApi.php
+ * KernelsApi.php
  *  
  * The MIT License (MIT)
  * 
@@ -26,16 +26,16 @@
  * SOFTWARE.
 */
 
-namespace iDimensionz\LinodeApiV4\Api\Linode\Distributions;
+namespace iDimensionz\LinodeApiV4\Api\Linode\Kernels;
 
 use iDimensionz\LinodeApiV4\LinodeApiEndpointAbstract;
 use iDimensionz\HttpClient\HttpClientInterface;
 
-class DistributionsApi extends LinodeApiEndpointAbstract
+class KernelsApi extends LinodeApiEndpointAbstract
 {
-    const ENDPOINT = 'linode/distributions';
+    const ENDPOINT = 'linode/kernels';
 
-    const DOMAIN_MODEL_CLASS_NAME = '\iDimensionz\LinodeApiV4\Api\Linode\Distributions\DistributionModel';
+    const DOMAIN_MODEL_CLASS_NAME = '\iDimensionz\LinodeApiV4\Api\Linode\Kernels\KernelModel';
 
     public function __construct(HttpClientInterface $httpClient = null)
     {
@@ -48,44 +48,47 @@ class DistributionsApi extends LinodeApiEndpointAbstract
         $httpResponse = $this->get();
         $data = $httpResponse->getBodyJsonAsArray();
 
-        $distributionsData = $data['distributions'];
-        $distributionModels = [];
-        if (is_array($distributionsData) && !empty($distributionsData)) {
-            foreach ($distributionsData as $distributionsDatum) {
-                $distributionModel = $this->hydrate($distributionsDatum);
-                $distributionModels[] = $distributionModel;
+        $kernelsData = $data['kernels'];
+        $kernelModels = [];
+        if (is_array($kernelsData) && !empty($kernelsData)) {
+            foreach ($kernelsData as $kernelsDatum) {
+                $kernelModel = $this->hydrate($kernelsDatum);
+                $kernelModels[] = $kernelModel;
             }
         }
 
-        return $distributionModels;
+        return $kernelModels;
     }
 
-    /**
-     * @param string $id
-     * @return DistributionModel
-     */
     public function getById($id)
     {
         $httpResponse = $this->get($id);
         $data = $httpResponse->getBodyJsonAsArray();
-        $distributionModel = $this->hydrate($data);
+        $kernelModel = $this->hydrate($data);
 
-        return $distributionModel;
+        return $kernelModel;
     }
 
-    private function hydrate($data)
+    /**
+     * @param array $data
+     * @return KernelModel
+     */
+    private function hydrate(array $data): KernelModel
     {
         /**
-         * @var DistributionModel $model
+         * @var KernelModel $model
          */
         $model = $this->createModel();
         $model->setId($data['id']);
-        $model->setVendor($data['vendor']);
-        $model->setCreated($data['created']);
-        $model->setDeprecated($data['deprecated']);
-        $model->setMinimumStorageSize($data['minimum_storage_size']);
-        $model->setIsX64($data['x64']);
+        $model->setDescription($data['description']);
+        $model->setIsXenCompatible($data['xen']);
+        $model->setIsKvmCompatible($data['kvm']);
         $model->setLabel($data['label']);
+        $model->setVersion($data['version']);
+        $model->setIsX64($data['x64']);
+        $model->setIsCurrent($data['current']);
+        $model->setIsDeprecated($data['deprecated']);
+        $model->setIsLatest($data['latest']);
 
         return $model;
     }
