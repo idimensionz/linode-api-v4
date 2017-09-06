@@ -32,6 +32,11 @@ use iDimensionz\LinodeApiV4\Api\Filters\FilterAbstract;
 use iDimensionz\LinodeApiV4\Api\Filters\FilterFieldCondition\FilterFieldConditionBoolean;
 use iDimensionz\LinodeApiV4\Api\Filters\FilterFieldCondition\FilterFieldConditionString;
 
+/**
+ * @todo Get boolean filters working.
+ * Class KernelFilter
+ * @package iDimensionz\LinodeApiV4\Api\Linode\Kernels\Filters
+ */
 class KernelFilter extends FilterAbstract
 {
     const FILTER_FIELD_XEN = 'xen';
