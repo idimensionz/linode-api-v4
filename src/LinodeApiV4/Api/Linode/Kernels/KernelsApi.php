@@ -37,13 +37,20 @@ class KernelsApi extends LinodeApiEndpointAbstract
 
     const DOMAIN_MODEL_CLASS_NAME = '\iDimensionz\LinodeApiV4\Api\Linode\Kernels\KernelModel';
 
+    /**
+     * KernelsApi constructor.
+     * @param HttpClientInterface|null $httpClient
+     */
     public function __construct(HttpClientInterface $httpClient = null)
     {
         parent::__construct(self::ENDPOINT, $httpClient);
         $this->setModelClassName(self::DOMAIN_MODEL_CLASS_NAME);
     }
 
-    public function getAll()
+    /**
+     * @return array
+     */
+    public function getAll(): array
     {
         $httpResponse = $this->get();
         $data = $httpResponse->getBodyJsonAsArray();
@@ -60,7 +67,11 @@ class KernelsApi extends LinodeApiEndpointAbstract
         return $kernelModels;
     }
 
-    public function getById($id)
+    /**
+     * @param string $id
+     * @return KernelModel
+     */
+    public function getById($id): KernelModel
     {
         $httpResponse = $this->get($id);
         $data = $httpResponse->getBodyJsonAsArray();
