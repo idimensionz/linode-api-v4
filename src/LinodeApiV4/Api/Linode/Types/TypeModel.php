@@ -31,7 +31,7 @@ namespace iDimensionz\LinodeApiV4\Api\Linode\Types;
 class TypeModel
 {
     const MEMORY_CLASS_STANDARD = 'standard';
-    const MEMORY_CLASS_HIGH = 'himem';
+    const MEMORY_CLASS_HIGH = 'highmem';
 
     /**
      * @var string
