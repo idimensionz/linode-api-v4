@@ -49,8 +49,9 @@ class KernelFilter extends FilterAbstract
 
     /**
      * KernelFilter constructor.
+     * @param string $conditionOperator
      */
-    public function __construct()
+    public function __construct($conditionOperator=self::CONDITION_OPERATOR_AND)
     {
         $filterFields = [
             self::FILTER_FIELD_XEN          =>  FilterAbstract::FILTER_FIELD_TYPE_BOOLEAN,
@@ -62,7 +63,7 @@ class KernelFilter extends FilterAbstract
             self::FILTER_FIELD_DEPRECATED   =>  FilterAbstract::FILTER_FIELD_TYPE_BOOLEAN,
         ];
         $this->setFilterFields($filterFields);
-        parent::__construct();
+        parent::__construct($conditionOperator);
     }
 
     /**
@@ -82,10 +83,11 @@ class KernelFilter extends FilterAbstract
     }
 
     /**
-     * @param $label
+     * @param string $label
      */
     public function addLabelFilter($label)
     {
+        $label = (string) $label;
         if (!empty($label)) {
             $this->addCondition(new FilterFieldConditionString(self::FILTER_FIELD_LABEL, $label));
         }

@@ -40,7 +40,11 @@ class DistributionFilter extends FilterAbstract
     const FILTER_FIELD_DEPRECATED = 'deprecated';
     const FILTER_FIELD_VENDOR = 'vendor';
 
-    public function __construct()
+    /**
+     * DistributionFilter constructor.
+     * @param string $conditionOperator
+     */
+    public function __construct($conditionOperator=self::CONDITION_OPERATOR_AND)
     {
         $filterFields = [
             self::FILTER_FIELD_LABEL                =>  FilterAbstract::FILTER_FIELD_TYPE_STRING,
@@ -49,7 +53,7 @@ class DistributionFilter extends FilterAbstract
             self::FILTER_FIELD_VENDOR               =>  FilterAbstract::FILTER_FIELD_TYPE_STRING
         ];
         $this->setFilterFields($filterFields);
-        parent::__construct();
+        parent::__construct($conditionOperator);
     }
 
     /**
