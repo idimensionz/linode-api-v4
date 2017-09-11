@@ -140,7 +140,8 @@ class TypeModel
     public function setMemoryClass(string $memoryClass)
     {
         if (!empty($memoryClass)) {
-            $validMemoryClasses = [self::MEMORY_CLASS_STANDARD, self::MEMORY_CLASS_HIGH];
+            $validMemoryClasses = $this->getValidMemoryClasses();
+
             if (!in_array($memoryClass, $validMemoryClasses)) {
                 throw new \InvalidArgumentException(__METHOD__ . '/memoryClass parameter must be one of ' .
                     implode(', ', $validMemoryClasses)
@@ -148,6 +149,17 @@ class TypeModel
             }
         }
         $this->memoryClass = $memoryClass;
+    }
+
+    /**
+     * @return array
+     */
+    public function getValidMemoryClasses(): array
+    {
+        // @todo Remove 'nanode' if invalid or add constant if it is valid.
+        $validMemoryClasses = ['nanode', self::MEMORY_CLASS_STANDARD, self::MEMORY_CLASS_HIGH];
+
+        return $validMemoryClasses;
     }
 
     /**
