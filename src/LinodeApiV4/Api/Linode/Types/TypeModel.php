@@ -139,11 +139,13 @@ class TypeModel
      */
     public function setMemoryClass(string $memoryClass)
     {
-        $validMemoryClasses = [self::MEMORY_CLASS_STANDARD, self::MEMORY_CLASS_HIGH];
-        if (!in_array($memoryClass, $validMemoryClasses)) {
-            throw new \InvalidArgumentException(__METHOD__ . '/memoryClass parameter must be one of ' .
-                implode(', ', $validMemoryClasses)
-            );
+        if (!empty($memoryClass)) {
+            $validMemoryClasses = [self::MEMORY_CLASS_STANDARD, self::MEMORY_CLASS_HIGH];
+            if (!in_array($memoryClass, $validMemoryClasses)) {
+                throw new \InvalidArgumentException(__METHOD__ . '/memoryClass parameter must be one of ' .
+                    implode(', ', $validMemoryClasses)
+                );
+            }
         }
         $this->memoryClass = $memoryClass;
     }
