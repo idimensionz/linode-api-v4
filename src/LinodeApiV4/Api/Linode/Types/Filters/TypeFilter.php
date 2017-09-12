@@ -31,7 +31,6 @@ namespace iDimensionz\LinodeApiV4\Api\Linode\Types\Filters;
 use iDimensionz\LinodeApiV4\Api\Filters\FilterAbstract;
 use iDimensionz\LinodeApiV4\Api\Filters\FilterFieldCondition\FilterFieldConditionNumber;
 use iDimensionz\LinodeApiV4\Api\Filters\FilterFieldCondition\FilterFieldConditionString;
-use PHPUnit\Util\Filter;
 
 class TypeFilter extends FilterAbstract
 {
@@ -132,7 +131,7 @@ class TypeFilter extends FilterAbstract
     {
         $cpuCoreCount = (int) $cpuCoreCount;
         $this->addCondition(
-            new FilterFieldConditionNumber(FilterAbstract::FILTER_FIELD_TYPE_INTEGER, $cpuCoreCount)
+            new FilterFieldConditionNumber(self::FILTER_FIELD_CPU_CORE_COUNT, $cpuCoreCount)
         );
     }
 }
