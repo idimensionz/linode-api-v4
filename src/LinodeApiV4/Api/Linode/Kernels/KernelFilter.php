@@ -26,7 +26,7 @@
  * SOFTWARE.
 */
 
-namespace iDimensionz\LinodeApiV4\Api\Linode\Kernels\Filters;
+namespace iDimensionz\LinodeApiV4\Api\Linode\Kernels;
 
 use iDimensionz\LinodeApiV4\Api\Filters\FilterAbstract;
 use iDimensionz\LinodeApiV4\Api\Filters\FilterFieldCondition\FilterFieldConditionBoolean;
@@ -35,7 +35,7 @@ use iDimensionz\LinodeApiV4\Api\Filters\FilterFieldCondition\FilterFieldConditio
 /**
  * @todo Get boolean filters working.
  * Class KernelFilter
- * @package iDimensionz\LinodeApiV4\Api\Linode\Kernels\Filters
+ * @package iDimensionz\LinodeApiV4\Api\Linode\Kernels
  */
 class KernelFilter extends FilterAbstract
 {

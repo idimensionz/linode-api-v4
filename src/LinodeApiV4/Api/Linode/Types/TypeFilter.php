@@ -26,7 +26,7 @@
  * SOFTWARE.
 */
 
-namespace iDimensionz\LinodeApiV4\Api\Linode\Types\Filters;
+namespace iDimensionz\LinodeApiV4\Api\Linode\Types;
 
 use iDimensionz\LinodeApiV4\Api\Filters\FilterAbstract;
 use iDimensionz\LinodeApiV4\Api\Filters\FilterFieldCondition\FilterFieldConditionNumber;
