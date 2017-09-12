@@ -28,20 +28,28 @@
 
 namespace iDimensionz\LinodeApiV4\Api\Regions;
 
+use iDimensionz\HttpClient\HttpClientInterface;
 use iDimensionz\LinodeApiV4\LinodeApiEndpointAbstract;
 
 class RegionsApi extends LinodeApiEndpointAbstract
 {
-    const ENDPOINT = 'region';
+    const ENDPOINT = 'regions';
 
-    const DOMAIN_MODEL_CLASS_NAME = '\iDimensionz\LinodeApiV4\Api\Linode\Distributions\DistributionModel';
+    const DOMAIN_MODEL_CLASS_NAME = '\iDimensionz\LinodeApiV4\Api\Regions\RegionModel';
 
+    /**
+     * RegionsApi constructor.
+     * @param HttpClientInterface|null $httpClient
+     */
     public function __construct($httpClient = null)
     {
         parent::__construct(self::ENDPOINT, $httpClient);
-        $this->setEndpoint(self::DOMAIN_MODEL_CLASS_NAME);
+        $this->setModelClassName(self::DOMAIN_MODEL_CLASS_NAME);
     }
 
+    /**
+     * @return RegionModel[]
+     */
     public function getAll()
     {
         $httpResponse = $this->get();
@@ -59,6 +67,10 @@ class RegionsApi extends LinodeApiEndpointAbstract
         return $regionModels;
     }
 
+    /**
+     * @param string $id
+     * @return RegionModel
+     */
     public function getById($id)
     {
         $httpResponse = $this->get($id);
@@ -68,6 +80,10 @@ class RegionsApi extends LinodeApiEndpointAbstract
         return $regionModel;
     }
 
+    /**
+     * @param array $data
+     * @return RegionModel
+     */
     protected function hydrate($data)
     {
         /**

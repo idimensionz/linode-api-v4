@@ -36,16 +36,23 @@ class RegionFilter extends FilterAbstract
     const FILTER_FIELD_LABEL = 'label';
     const FILTER_FIELD_COUNTRY = 'country';
 
+    /**
+     * RegionFilter constructor.
+     * @param string $conditionOperator
+     */
     public function __construct($conditionOperator = self::CONDITION_OPERATOR_AND)
     {
         $filterFields = array(
-            self::FILTER_FIELD_LABEL,
-            self::FILTER_FIELD_COUNTRY
+            self::FILTER_FIELD_LABEL    => FilterAbstract::FILTER_FIELD_TYPE_STRING,
+            self::FILTER_FIELD_COUNTRY  => FilterAbstract::FILTER_FIELD_TYPE_STRING
         );
         $this->setFilterFields($filterFields);
         parent::__construct($conditionOperator);
     }
 
+    /**
+     * @param string $label
+     */
     public function addLabelFilter($label)
     {
         $label = (string) $label;
@@ -54,6 +61,9 @@ class RegionFilter extends FilterAbstract
         }
     }
 
+    /**
+     * @param string $country
+     */
     public function addCountryFilter($country)
     {
         $country = (string) $country;
