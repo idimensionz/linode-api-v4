@@ -104,8 +104,26 @@ abstract class ApiEndpointAbstract
     }
 
     /**
+     * @param string $command
+     * @param string $data  JSON encoded data
+     * @return HttpResponse
+     */
+    public function put($command, $data)
+    {
+        $body = [
+            'body'  =>  $data
+        ];
+        if (!empty($command)) {
+            $command = "/{$command}";
+        }
+        $httpResponse = $this->getHttpClient()->put($this->getEndpoint() . $command, $body);
+
+        return $httpResponse;
+    }
+
+    /**
      * @param $command
-     * @return array|string
+     * @return HttpResponse
      */
     public function delete($command)
     {

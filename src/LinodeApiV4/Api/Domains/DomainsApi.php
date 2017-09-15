@@ -48,7 +48,7 @@ class DomainsApi extends LinodeApiEndpointAbstract
      * @todo implement filters based on filterable elements.
      * @return DomainModel[]
      */
-    public function getAllDomains()
+    public function getAll(): array
     {
         // Don't need to specify a command here because the Domains API is simple.
         $httpResponse = $this->get();
@@ -63,6 +63,19 @@ class DomainsApi extends LinodeApiEndpointAbstract
         }
 
         return $domainModels;
+    }
+
+    /**
+     * @param string $id
+     * @return DomainModel
+     */
+    public function getById(string $id): DomainModel
+    {
+        $httpResponse = $this->get($id);
+        $data = $httpResponse->getBodyJsonAsArray();
+        $domainModel = $this->hydrate($data);
+
+        return $domainModel;
     }
 
     /**
