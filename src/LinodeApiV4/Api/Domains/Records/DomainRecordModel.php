@@ -44,43 +44,43 @@ class DomainRecordModel implements \JsonSerializable
     const TYPE_SRV = 'SRV';
 
     /**
-     * @var int
+     * @var int|null
      */
     private $id;
     /**
-     * @var string
+     * @var string|null
      */
     private $type;
     /**
-     * @var string
+     * @var string|null
      */
     private $name;
     /**
-     * @var string
+     * @var string|null
      */
     private $target;
     /**
-     * @var int
+     * @var int|null
      */
     private $priority;
     /**
-     * @var int
+     * @var int|null
      */
     private $weight;
     /**
-     * @var int
+     * @var int|null
      */
     private $port;
     /**
-     * @var string
+     * @var string|null
      */
     private $service;
     /**
-     * @var string
+     * @var string|null
      */
     private $protocol;
     /**
-     * @var int Represents the time-to-live in seconds.
+     * @var int|null Represents the time-to-live in seconds.
      */
     private $ttl;
 
@@ -131,7 +131,7 @@ class DomainRecordModel implements \JsonSerializable
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getId(): int
     {
@@ -139,15 +139,18 @@ class DomainRecordModel implements \JsonSerializable
     }
 
     /**
-     * @param int $id
+     * @param int|null $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
+        if (!is_null($id)) {
+            $id = (int) $id;
+        }
         $this->id = $id;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getType(): string
     {
@@ -155,21 +158,23 @@ class DomainRecordModel implements \JsonSerializable
     }
 
     /**
-     * @param string $type
+     * @param string|null $type
      * @throws \InvalidArgumentException
      */
-    public function setType(string $type)
+    public function setType($type)
     {
-        if (!$this->isValidType($type)) {
-            throw new \InvalidArgumentException(
-                __METHOD__ . '/type must be one of ' . implode(', ', $this->getValidTypes()) . '.'
-            );
+        if (!is_null($type)) {
+            if (!$this->isValidType($type)) {
+                throw new \InvalidArgumentException(
+                    __METHOD__ . '/type must be one of ' . implode(', ', $this->getValidTypes()) . '.'
+                );
+            }
         }
         $this->type = $type;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getName(): string
     {
@@ -177,15 +182,18 @@ class DomainRecordModel implements \JsonSerializable
     }
 
     /**
-     * @param string $name
+     * @param string|null $name
      */
-    public function setName(string $name)
+    public function setName($name)
     {
+        if (!is_null($name)) {
+            $name = (string) $name;
+        }
         $this->name = $name;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getTarget(): string
     {
@@ -193,15 +201,18 @@ class DomainRecordModel implements \JsonSerializable
     }
 
     /**
-     * @param string $target
+     * @param string|null $target
      */
-    public function setTarget(string $target)
+    public function setTarget($target)
     {
+        if (!is_null($target)) {
+            $target = (string) $target;
+        }
         $this->target = $target;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getPriority(): int
     {
@@ -209,15 +220,18 @@ class DomainRecordModel implements \JsonSerializable
     }
 
     /**
-     * @param int $priority
+     * @param int|null $priority
      */
-    public function setPriority(int $priority)
+    public function setPriority($priority)
     {
+        if (!is_null($priority)) {
+            $priority = (int) $priority;
+        }
         $this->priority = $priority;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getWeight(): int
     {
@@ -225,15 +239,18 @@ class DomainRecordModel implements \JsonSerializable
     }
 
     /**
-     * @param int $weight
+     * @param int|null $weight
      */
-    public function setWeight(int $weight)
+    public function setWeight($weight)
     {
+        if (!is_null($weight)) {
+            $weight = (int) $weight;
+        }
         $this->weight = $weight;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getPort(): int
     {
@@ -241,20 +258,23 @@ class DomainRecordModel implements \JsonSerializable
     }
 
     /**
-     * @param int $port
+     * @param int|null $port
      */
-    public function setPort(int $port)
+    public function setPort($port)
     {
-        if (0 > $port || 65535 < $port) {
-            throw new \InvalidArgumentException(
-                __METHOD__ . '/port parameter must be between 0 and 65535.'
-            );
+        if (!is_null($port)) {
+            if (0 > $port || 65535 < $port) {
+                throw new \InvalidArgumentException(
+                    __METHOD__ . '/port parameter must be between 0 and 65535.'
+                );
+            }
+            $port = (int)$port;
         }
         $this->port = $port;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getService(): string
     {
@@ -262,15 +282,18 @@ class DomainRecordModel implements \JsonSerializable
     }
 
     /**
-     * @param string $service
+     * @param string|null $service
      */
-    public function setService(string $service)
+    public function setService($service)
     {
+        if (!is_null($service)) {
+            $service = (string) $service;
+        }
         $this->service = $service;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getProtocol(): string
     {
@@ -278,15 +301,18 @@ class DomainRecordModel implements \JsonSerializable
     }
 
     /**
-     * @param string $protocol
+     * @param string|null $protocol
      */
-    public function setProtocol(string $protocol)
+    public function setProtocol($protocol)
     {
+        if (!is_null($protocol)) {
+            $protocol = (string) $protocol;
+        }
         $this->protocol = $protocol;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getTtl(): int
     {
@@ -294,14 +320,17 @@ class DomainRecordModel implements \JsonSerializable
     }
 
     /**
-     * @param int $ttl
+     * @param int|null $ttl
      */
     public function setTtl(int $ttl)
     {
-        if (0 > $ttl) {
-            throw new \InvalidArgumentException(
-                __METHOD__ . '/ttl parameter must be an integer 0 or greater.'
-            );
+        if (!is_null($ttl)) {
+            if (0 > $ttl) {
+                throw new \InvalidArgumentException(
+                    __METHOD__ . '/ttl parameter must be an integer 0 or greater.'
+                );
+            }
+            $ttl = (int)$ttl;
         }
         $this->ttl = $ttl;
     }
@@ -312,17 +341,15 @@ class DomainRecordModel implements \JsonSerializable
      * @return mixed data which can be serialized by <b>json_encode</b>,
      * which is a value of any type other than a resource.
      * @since 5.4.0
+     * @return array
      * @throws \Exception
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $type = $this->getType();
-        if (is_null($type)) {
-            throw new \Exception(__METHOD__ . '/Type value must be set to JSON encode Domain Record Model.');
+        if (!is_null($type)) {
+            $data['type'] = $this->getType();
         }
-        $data = [
-            'type'  =>  $this->getType(),
-        ];
         $name = $this->getName();
         if (!is_null($name)) {
             $data['name'] = $name;

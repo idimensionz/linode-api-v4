@@ -80,4 +80,12 @@ class DomainType
     {
         return in_array($type, $this->getValidTypes());
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getType();
+    }
 }

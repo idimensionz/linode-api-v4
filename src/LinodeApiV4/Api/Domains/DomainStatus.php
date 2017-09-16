@@ -83,7 +83,7 @@ class DomainStatus
      */
     public function getValidStatuses()
     {
-        return array(self::ACTIVE, self::DISABLED, self::EDIT_MODE);
+        return [self::ACTIVE, self::DISABLED, self::EDIT_MODE];
     }
 
     public function __toString()

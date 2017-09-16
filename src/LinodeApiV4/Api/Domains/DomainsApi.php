@@ -79,6 +79,51 @@ class DomainsApi extends LinodeApiEndpointAbstract
     }
 
     /**
+     * @param DomainModel $domainModel
+     * @return bool
+     * @throws \InvalidArgumentException
+     */
+    public function create(DomainModel $domainModel): bool
+    {
+        // Verify required fields have values.
+        if (!is_null($domainModel->getDomainName()) && !is_null($domainModel->getType())) {
+            $data = json_encode($domainModel);
+            $httpResponse = $this->post('', $data);
+            $isSuccess = $httpResponse->isSuccess();
+        } else {
+            throw new \InvalidArgumentException(
+                __METHOD__ . '/domain and type are required values for creating a domain.'
+            );
+        }
+
+        return $isSuccess;
+    }
+
+    /**
+     * @param int         $domainId
+     * @param DomainModel $domainModel
+     * @return bool
+     */
+    public function update(int $domainId, DomainModel $domainModel): bool
+    {
+        $data = json_encode($domainModel);
+        $httpResponse = $this->put($domainId, $data);
+
+        return $httpResponse->isSuccess();
+    }
+
+    /**
+     * @param int $domainId
+     * @return bool
+     */
+    public function remove(int $domainId)
+    {
+        $httpResponse = $this->delete($domainId);
+
+        return $httpResponse->isSuccess();
+    }
+
+    /**
      * @param array $data
      * @return DomainModel
      */

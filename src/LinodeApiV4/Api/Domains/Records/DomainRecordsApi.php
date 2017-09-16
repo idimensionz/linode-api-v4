@@ -87,6 +87,11 @@ class DomainRecordsApi extends LinodeApiEndpointAbstract
      */
     public function create(int $domainId, DomainRecordModel $domainRecordModel): bool
     {
+        if (is_null($domainRecordModel->getType())) {
+            throw new \InvalidArgumentException(
+                __METHOD__ . '/A domain record "type" value is required to create a domain record.'
+            );
+        }
         $data = json_encode($domainRecordModel);
         $httpResponse = $this->post("$domainId/records", $data);
 

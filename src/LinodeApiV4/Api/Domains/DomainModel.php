@@ -28,70 +28,85 @@
 
 namespace iDimensionz\LinodeApiV4\Api\Domains;
 
-class DomainModel
+class DomainModel implements \JsonSerializable
 {
-    const STATUS_ACTIVE = 'active';
-    const STATUS_DISABLED = 'disabled';
-    const STATUS_EDIT_MODE = 'edit_mode';
-
-    const TYPE_MASTER = 'master';
-    const TYPE_SLAVE = 'slave';
-
     /**
-     * @var int
+     * @var int|null
      */
     private $id;
     /**
-     * @var string
+     * @var string|null
      */
     private $domainName;
     /**
-     * @var string
+     * @var string|null
      */
     private $soaContactEmail;
     /**
-     * @var string
+     * @var string|null
      */
     private $description;
     /**
-     * @var int (seconds)
+     * @var int|null (seconds)
      */
     private $refreshInterval;
     /**
-     * @var int (seconds)
+     * @var int|null (seconds)
      */
     private $retryInterval;
     /**
-     * @var int (seconds)
+     * @var int|null (seconds)
      */
     private $expireInterval;
     /**
-     * @var int (seconds)
+     * @var int|null (seconds)
      */
     private $timeToLiveInterval;
     /**
-     * @var DomainStatus
+     * @var DomainStatus|null
      */
     private $status;
     /**
-     * @var array
+     * @var array|null
      */
     private $masterIps;
     /**
-     * @var array
+     * @var array|null
      */
     private $axfrIps;
     /**
-     * @var string
+     * @var string|null
      */
     private $group;
     /**
-     * @var DomainType
+     * @var DomainType|null
      */
     private $type;
 
+    public function __construct()
+    {
+        $this->populateEmpty();
+    }
+
+    public function populateEmpty()
+    {
+        $this->setId(null);
+        $this->setDomainName(null);
+        $this->setSoaContactEmail(null);
+        $this->setDescription(null);
+        $this->setRefreshInterval(null);
+        $this->setRetryInterval(null);
+        $this->setExpireInterval(null);
+        $this->setTimeToLiveInterval(null);
+        $this->setStatus(null);
+        $this->setMasterIps(null);
+        $this->setAxfrIps(null);
+        $this->setGroup(null);
+        $this->setType(null);
+    }
+
     /**
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -99,15 +114,18 @@ class DomainModel
     }
 
     /**
-     * @param int $id
+     * @param int|null $id
      */
     public function setId($id)
     {
-        $this->id = (int) $id;
+        if (!is_null($id)) {
+            $id = (int) $id;
+        }
+        $this->id = $id;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getDomainName()
     {
@@ -115,15 +133,18 @@ class DomainModel
     }
 
     /**
-     * @param string $domainName
+     * @param string|null $domainName
      */
     public function setDomainName($domainName)
     {
-        $this->domainName = (string) $domainName;
+        if (!is_null($domainName)) {
+            $domainName = (string) $domainName;
+        }
+        $this->domainName = $domainName;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getSoaContactEmail()
     {
@@ -131,15 +152,18 @@ class DomainModel
     }
 
     /**
-     * @param string $soaContactEmail
+     * @param string|null $soaContactEmail
      */
     public function setSoaContactEmail($soaContactEmail)
     {
-        $this->soaContactEmail = (string) $soaContactEmail;
+        if (!is_null($soaContactEmail)) {
+            $soaContactEmail = (string) $soaContactEmail;
+        }
+        $this->soaContactEmail = $soaContactEmail;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -147,15 +171,18 @@ class DomainModel
     }
 
     /**
-     * @param string $description
+     * @param string|null $description
      */
     public function setDescription($description)
     {
-        $this->description = (string) $description;
+        if (!is_null($description)) {
+            $description = (string) $description;
+        }
+        $this->description = $description;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getRefreshInterval()
     {
@@ -163,15 +190,18 @@ class DomainModel
     }
 
     /**
-     * @param int $refreshInterval
+     * @param int|null $refreshInterval
      */
     public function setRefreshInterval($refreshInterval)
     {
-        $this->refreshInterval = (int) $refreshInterval;
+        if (!is_null($refreshInterval)) {
+            $refreshInterval = (int) $refreshInterval;
+        }
+        $this->refreshInterval = $refreshInterval;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getRetryInterval()
     {
@@ -179,15 +209,18 @@ class DomainModel
     }
 
     /**
-     * @param int $retryInterval
+     * @param int|null $retryInterval
      */
     public function setRetryInterval($retryInterval)
     {
-        $this->retryInterval = (int) $retryInterval;
+        if (!is_null($retryInterval)) {
+            $retryInterval = (int) $retryInterval;
+        }
+        $this->retryInterval = $retryInterval;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getExpireInterval()
     {
@@ -195,15 +228,18 @@ class DomainModel
     }
 
     /**
-     * @param int $expireInterval
+     * @param int|null $expireInterval
      */
     public function setExpireInterval($expireInterval)
     {
-        $this->expireInterval = (int) $expireInterval;
+        if (!is_null($expireInterval)) {
+            $expireInterval = (int) $expireInterval;
+        }
+        $this->expireInterval = $expireInterval;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getTimeToLiveInterval()
     {
@@ -211,15 +247,18 @@ class DomainModel
     }
 
     /**
-     * @param int $timeToLiveInterval
+     * @param int|null $timeToLiveInterval
      */
     public function setTimeToLiveInterval($timeToLiveInterval)
     {
-        $this->timeToLiveInterval = (int) $timeToLiveInterval;
+        if (!is_null($timeToLiveInterval)) {
+            $timeToLiveInterval = (int) $timeToLiveInterval;
+        }
+        $this->timeToLiveInterval = $timeToLiveInterval;
     }
 
     /**
-     * @return DomainStatus
+     * @return DomainStatus|null
      */
     public function getStatus()
     {
@@ -227,15 +266,36 @@ class DomainModel
     }
 
     /**
-     * @param DomainStatus $status
+     * @param string|null $status
      */
     public function setStatus($status)
     {
-        $this->status = new DomainStatus($status);
+        if (!is_null($status)) {
+            $status = (string) $status;
+            $domainStatus = new DomainStatus($status);
+        } else {
+            $domainStatus = null;
+        }
+        $this->setDomainStatus($domainStatus);
     }
 
     /**
-     * @return array
+     * @param DomainStatus|null $domainStatus
+     */
+    public function setDomainStatus($domainStatus)
+    {
+        if (!is_null($domainStatus)) {
+            if (!$domainStatus instanceof DomainStatus) {
+                throw new \InvalidArgumentException(
+                    __METHOD__ . '/domainStatus parameter must be null or an instance of DomainStatus.'
+                );
+            }
+        }
+        $this->status = $domainStatus;
+    }
+
+    /**
+     * @return array|null
      */
     public function getMasterIps()
     {
@@ -243,18 +303,20 @@ class DomainModel
     }
 
     /**
-     * @param array $masterIps
+     * @param array|null $masterIps
      */
     public function setMasterIps($masterIps)
     {
-        if (!is_array($masterIps)) {
-            throw new \InvalidArgumentException(__METHOD__ . '/masterIps parameter must be an array.');
+        if (!is_null($masterIps)) {
+            if (!is_array($masterIps)) {
+                throw new \InvalidArgumentException(__METHOD__ . '/masterIps parameter must be an array.');
+            }
         }
         $this->masterIps = $masterIps;
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function getAxfrIps()
     {
@@ -262,18 +324,20 @@ class DomainModel
     }
 
     /**
-     * @param array $axfrIps
+     * @param array|null $axfrIps
      */
     public function setAxfrIps($axfrIps)
     {
-        if (!is_array($axfrIps)) {
-            throw new \InvalidArgumentException(__METHOD__ . '/axfrIps parameter must be an array.');
+        if (!is_null($axfrIps)) {
+            if (!is_array($axfrIps)) {
+                throw new \InvalidArgumentException(__METHOD__ . '/axfrIps parameter must be an array.');
+            }
         }
         $this->axfrIps = $axfrIps;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getGroup()
     {
@@ -281,15 +345,18 @@ class DomainModel
     }
 
     /**
-     * @param string $group
+     * @param string|null $group
      */
     public function setGroup($group)
     {
-        $this->group = (string) $group;
+        if (!is_null($group)) {
+            $group = (string) $group;
+        }
+        $this->group = $group;
     }
 
     /**
-     * @return DomainType
+     * @return DomainType|null
      */
     public function getType()
     {
@@ -297,10 +364,99 @@ class DomainModel
     }
 
     /**
-     * @param DomainType $type
+     * @param string|null $type
      */
     public function setType($type)
     {
-        $this->type = new DomainType($type);
+        if (!is_null($type)) {
+            $type = (string) $type;
+            $domainType = new DomainType($type);
+        } else {
+            $domainType = null;
+        }
+        $this->setDomainType($domainType);
+    }
+
+    /**
+     * @param DomainType|null $type
+     */
+    public function setDomainType($type)
+    {
+        if (!is_null($type)) {
+            if (!$type instanceof DomainType) {
+                throw new \InvalidArgumentException(
+                    __METHOD__ . '/type parameter must be null or an instance of DomainType.'
+                );
+            }
+        }
+        $this->type = $type;
+    }
+
+    /**
+     * Used primarily to send data TO an API endpoint, so null values are not included.
+     * Specify data which should be serialized to JSON
+     * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     * @throws \Exception
+     */
+    public function jsonSerialize()
+    {
+        $data = [];
+        $domain = $this->getDomainName();
+        if (!is_null($domain)) {
+            $data['domain'] = $domain;
+        }
+        $type = $this->getType();
+        if (!is_null($type)) {
+            $data['type'] = $type;
+        }
+        $soaContactEmail = $this->getSoaContactEmail();
+        if (!is_null($soaContactEmail)) {
+            $data['soa_email'] = $soaContactEmail;
+        }
+        $description = $this->getDescription();
+        if (!is_null($description)) {
+            $data['description'] = $description;
+        }
+        $refreshInterval = $this->getRefreshInterval();
+        if (!is_null($refreshInterval)) {
+            $data['refresh_sec'] = $refreshInterval;
+        }
+        $retryInterval = $this->getRetryInterval();
+        if (!is_null($retryInterval)) {
+            $data['retry_sec'] = $retryInterval;
+        }
+        $expireInterval = $this->getExpireInterval();
+        if (!is_null($expireInterval)) {
+            $data['expire_sec'] = $expireInterval;
+        }
+        $ttlInterval = $this->getTimeToLiveInterval();
+        if (!is_null($ttlInterval)) {
+            $data['ttl_sec'] = $ttlInterval;
+        }
+        $status = $this->getStatus();
+        if (!is_null($status)) {
+            $data['status'] = $status;
+        }
+        $masterIps = $this->getMasterIps();
+        if (!is_null($masterIps)) {
+            $data['master_ips'] = $masterIps;
+        }
+        $axfrIps = $this->getAxfrIps();
+        if (!is_null($axfrIps)) {
+            $data['axfr_ips'] = $axfrIps;
+        }
+        $group = $this->getGroup();
+        if (!is_null($group)) {
+            $data['group'] = $group;
+        }
+        $type = $this->getType();
+        if (!is_null($type)) {
+            $data['type'] = $type;
+        }
+
+        return $data;
     }
 }
