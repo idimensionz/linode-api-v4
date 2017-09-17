@@ -10,4 +10,5 @@ Join our HipChat room to discuss iDimensionz's PHP client for Linode API v4 http
 
 ![Build Status](https://travis-ci.org/idimensionz/linode-api-v4.svg?branch=php7.0)
 [![Code Climate](https://codeclimate.com/github/idimensionz/linode-api-v4/badges/gpa.svg)](https://codeclimate.com/github/idimensionz/linode-api-v4)
+[![Test Coverage](https://codeclimate.com/github/idimensionz/linode-api-v4/badges/coverage.svg)](https://codeclimate.com/github/idimensionz/linode-api-v4/coverage)
 
