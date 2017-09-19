@@ -410,7 +410,7 @@ class DomainModel implements \JsonSerializable
         }
         $type = $this->getType();
         if (!is_null($type)) {
-            $data['type'] = $type;
+            $data['type'] = (string) $type;
         }
         $soaContactEmail = $this->getSoaContactEmail();
         if (!is_null($soaContactEmail)) {
@@ -451,10 +451,6 @@ class DomainModel implements \JsonSerializable
         $group = $this->getGroup();
         if (!is_null($group)) {
             $data['group'] = $group;
-        }
-        $type = $this->getType();
-        if (!is_null($type)) {
-            $data['type'] = $type;
         }
 
         return $data;
