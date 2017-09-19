@@ -87,7 +87,7 @@ class DomainsApi extends LinodeApiEndpointAbstract
     {
         // Verify required fields have values.
         if (!is_null($domainModel->getDomainName()) && !is_null($domainModel->getType())) {
-            $data = json_encode($domainModel);
+            $data = $domainModel->toArray();
             $httpResponse = $this->post('', $data);
             $isSuccess = $httpResponse->isSuccess();
         } else {
@@ -106,7 +106,7 @@ class DomainsApi extends LinodeApiEndpointAbstract
      */
     public function update(int $domainId, DomainModel $domainModel): bool
     {
-        $data = json_encode($domainModel);
+        $data = $domainModel->toArray();
         $httpResponse = $this->put($domainId, $data);
 
         return $httpResponse->isSuccess();
