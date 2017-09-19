@@ -138,9 +138,9 @@ class ApiEndpointAbstractUnitTest extends TestCase
     public function testPatchWithEmptyCommandParameter()
     {
         $this->hasApiEndpointAbstract($this->validEndpoint);
-        $validData = json_encode(['some-data']);
+        $validData = ['some-data'];
         $actualResponse = $this->apiEndpointAbstract->patch('', $validData);
-        \Phake::verify($this->httpClient)->patch($this->validEndpoint, ['body' => $validData]);
+        \Phake::verify($this->httpClient)->patch($this->validEndpoint, ['json' => $validData]);
         $this->assertInstanceOf(self::HTTP_RESPONSE, $actualResponse);
     }
 
@@ -148,18 +148,18 @@ class ApiEndpointAbstractUnitTest extends TestCase
     {
         $this->hasApiEndpointAbstract($this->validEndpoint);
         $validCommand = 'some-command';
-        $validData = json_encode(['valid-data']);
+        $validData = ['valid-data'];
         $actualResponse = $this->apiEndpointAbstract->patch($validCommand, $validData);
-        \Phake::verify($this->httpClient)->patch($this->validEndpoint . '/' . $validCommand, ['body' => $validData]);
+        \Phake::verify($this->httpClient)->patch($this->validEndpoint . '/' . $validCommand, ['json' => $validData]);
         $this->assertInstanceOf(self::HTTP_RESPONSE, $actualResponse);
     }
 
     public function testPostWithEmptyCommandParameter()
     {
         $this->hasApiEndpointAbstract($this->validEndpoint);
-        $validData = json_encode(['some-data']);
+        $validData = ['some-data'];
         $actualResponse = $this->apiEndpointAbstract->post('', $validData);
-        \Phake::verify($this->httpClient)->post($this->validEndpoint, ['body' => $validData]);
+        \Phake::verify($this->httpClient)->post($this->validEndpoint, ['json' => $validData]);
         $this->assertInstanceOf(self::HTTP_RESPONSE, $actualResponse);
     }
 
@@ -167,9 +167,9 @@ class ApiEndpointAbstractUnitTest extends TestCase
     {
         $this->hasApiEndpointAbstract($this->validEndpoint);
         $validCommand = 'some-command';
-        $validData = json_encode(['valid-data']);
+        $validData = ['valid-data'];
         $actualResponse = $this->apiEndpointAbstract->post($validCommand, $validData);
-        \Phake::verify($this->httpClient)->post($this->validEndpoint . '/' . $validCommand, ['body' => $validData]);
+        \Phake::verify($this->httpClient)->post($this->validEndpoint . '/' . $validCommand, ['json' => $validData]);
         $this->assertInstanceOf(self::HTTP_RESPONSE, $actualResponse);
     }
 
