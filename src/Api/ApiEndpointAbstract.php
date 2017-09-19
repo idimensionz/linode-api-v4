@@ -74,13 +74,13 @@ abstract class ApiEndpointAbstract
      */
     public function patch($command, $data)
     {
-        $body = [
-            'body' => $data
+        $options = [
+            'json' => $data
         ];
         if (!empty($command)) {
             $command = "/{$command}";
         }
-        $httpResponse = $this->getHttpClient()->patch($this->getEndpoint() . $command, $body);
+        $httpResponse = $this->getHttpClient()->patch($this->getEndpoint() . $command, $options);
 
         return $httpResponse;
     }
@@ -92,13 +92,13 @@ abstract class ApiEndpointAbstract
      */
     public function post($command, $data)
     {
-        $body = [
-            'body'  =>  $data
+        $options = [
+            'json'  =>  $data
         ];
         if (!empty($command)) {
             $command = "/{$command}";
         }
-        $httpResponse = $this->getHttpClient()->post($this->getEndpoint() . $command, $body);
+        $httpResponse = $this->getHttpClient()->post($this->getEndpoint() . $command, $options);
 
         return $httpResponse;
     }
@@ -110,13 +110,13 @@ abstract class ApiEndpointAbstract
      */
     public function put($command, $data)
     {
-        $body = [
-            'body'  =>  $data
+        $options = [
+            'json'  =>  $data
         ];
         if (!empty($command)) {
             $command = "/{$command}";
         }
-        $httpResponse = $this->getHttpClient()->put($this->getEndpoint() . $command, $body);
+        $httpResponse = $this->getHttpClient()->put($this->getEndpoint() . $command, $options);
 
         return $httpResponse;
     }
