@@ -69,10 +69,10 @@ abstract class ApiEndpointAbstract
 
     /**
      * @param string $command
-     * @param string $data JSON encoded data
+     * @param array $data
      * @return HttpResponse
      */
-    public function patch($command, $data)
+    public function patch($command, array $data): HttpResponse
     {
         $options = [
             'json' => $data
@@ -87,10 +87,10 @@ abstract class ApiEndpointAbstract
 
     /**
      * @param string $command
-     * @param string $data  JSON encoded data
+     * @param array $data
      * @return HttpResponse
      */
-    public function post($command, $data)
+    public function post($command, array $data): HttpResponse
     {
         $options = [
             'json'  =>  $data
@@ -105,10 +105,10 @@ abstract class ApiEndpointAbstract
 
     /**
      * @param string $command
-     * @param string $data  JSON encoded data
+     * @param array $data
      * @return HttpResponse
      */
-    public function put($command, $data)
+    public function put($command, array $data): HttpResponse
     {
         $options = [
             'json'  =>  $data

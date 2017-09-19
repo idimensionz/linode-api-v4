@@ -393,15 +393,12 @@ class DomainModel implements \JsonSerializable
     }
 
     /**
+     * Transform the model data to an array.
+     * This is useful when calling POST, PUT or PATCH endpoints.
      * Used primarily to send data TO an API endpoint, so null values are not included.
-     * Specify data which should be serialized to JSON
-     * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
-     * @return mixed data which can be serialized by <b>json_encode</b>,
-     * which is a value of any type other than a resource.
-     * @since 5.4.0
-     * @throws \Exception
+     * @return array
      */
-    public function jsonSerialize()
+    public function toArray(): array
     {
         $data = [];
         $domain = $this->getDomainName();

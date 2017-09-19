@@ -336,15 +336,12 @@ class DomainRecordModel implements \JsonSerializable
     }
 
     /**
-     * Specify data which should be serialized to JSON
-     * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
-     * @return mixed data which can be serialized by <b>json_encode</b>,
-     * which is a value of any type other than a resource.
-     * @since 5.4.0
+     * Transform the model data to an array.
+     * This is useful when calling POST, PUT or PATCH endpoints.
+     * Used primarily to send data TO an API endpoint, so null values are not included.
      * @return array
-     * @throws \Exception
      */
-    public function jsonSerialize(): array
+    public function toArray(): array
     {
         $type = $this->getType();
         if (!is_null($type)) {
