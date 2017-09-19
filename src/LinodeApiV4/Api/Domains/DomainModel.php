@@ -28,7 +28,7 @@
 
 namespace iDimensionz\LinodeApiV4\Api\Domains;
 
-class DomainModel implements \JsonSerializable
+class DomainModel
 {
     /**
      * @var int|null

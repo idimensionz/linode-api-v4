@@ -33,7 +33,7 @@ namespace iDimensionz\LinodeApiV4\Api\Domains\Records;
  * @package iDimensionz\LinodeApiV4\Api\Domains
  * @see https://developers.linode.com/v4/reference/endpoints/domains/:id/records/:id
  */
-class DomainRecordModel implements \JsonSerializable
+class DomainRecordModel
 {
     const TYPE_A = 'A';
     const TYPE_AAAA = 'AAAA';
@@ -343,6 +343,7 @@ class DomainRecordModel implements \JsonSerializable
      */
     public function toArray(): array
     {
+        $data = [];
         $type = $this->getType();
         if (!is_null($type)) {
             $data['type'] = $this->getType();
