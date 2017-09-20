@@ -48,7 +48,7 @@ class DistributionsApi extends LinodeApiEndpointAbstract
         $httpResponse = $this->get();
         $data = $httpResponse->getBodyJsonAsArray();
 
-        $distributionsData = $data['distributions'];
+        $distributionsData = $data['data'];
         $distributionModels = [];
         if (is_array($distributionsData) && !empty($distributionsData)) {
             foreach ($distributionsData as $distributionsDatum) {
@@ -80,12 +80,12 @@ class DistributionsApi extends LinodeApiEndpointAbstract
          */
         $model = $this->createModel();
         $model->setId($data['id']);
-        $model->setVendor($data['vendor']);
-        $model->setCreated($data['created']);
-        $model->setDeprecated($data['deprecated']);
-        $model->setMinimumStorageSize($data['minimum_storage_size']);
-        $model->setIsX64($data['x64']);
+        $model->setUpdated($data['updated']);
         $model->setLabel($data['label']);
+        $model->setMinimumStorageSize($data['disk_minimum']);
+        $model->setDeprecated($data['deprecated']);
+        $model->setVendor($data['vendor']);
+        $model->setArchitecture($data['architecture']);
 
         return $model;
     }

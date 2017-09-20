@@ -53,7 +53,7 @@ class DomainsApi extends LinodeApiEndpointAbstract
         // Don't need to specify a command here because the Domains API is simple.
         $httpResponse = $this->get();
         $data = $httpResponse->getBodyJsonAsArray();
-        $domainData = $data['domains'];
+        $domainData = $data['data'];
         $domainModels = [];
         if (is_array($domainData) && !empty($domainData)) {
             foreach ($domainData as $domainDatum) {

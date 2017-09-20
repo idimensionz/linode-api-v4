@@ -35,17 +35,13 @@ class DistributionModel
      */
     private $id;
     /**
-     * @var string
-     */
-    private $vendor;
-    /**
      * @var \DateTime
      */
-    private $created;
+    private $updated;
     /**
-     * @var bool
+     * @var string
      */
-    private $deprecated;
+    private $label;
     /**
      * @var int
      */
@@ -53,11 +49,15 @@ class DistributionModel
     /**
      * @var bool
      */
-    private $isX64;
+    private $deprecated;
     /**
      * @var string
      */
-    private $label;
+    private $vendor;
+    /**
+     * @var DistributionArchitecture
+     */
+    private $architecture;
 
     /**
      * @return string
@@ -94,19 +94,19 @@ class DistributionModel
     /**
      * @return \DateTime
      */
-    public function getCreated(): \DateTime
+    public function getUpdated(): \DateTime
     {
-        return $this->created;
+        return $this->updated;
     }
 
     /**
-     * @param \DateTime $created
+     * @param \DateTime $updated
      */
-    public function setCreated($created)
+    public function setUpdated($updated)
     {
-        $dateTime = new \DateTime($created);
+        $dateTime = new \DateTime($updated);
         // @todo Add validation.
-        $this->created = $dateTime;
+        $this->updated = $dateTime;
     }
 
     /**
@@ -142,22 +142,6 @@ class DistributionModel
     }
 
     /**
-     * @return bool
-     */
-    public function isX64(): bool
-    {
-        return $this->isX64;
-    }
-
-    /**
-     * @param bool $isX64
-     */
-    public function setIsX64(bool $isX64)
-    {
-        $this->isX64 = (bool) $isX64;
-    }
-
-    /**
      * @return string
      */
     public function getLabel(): string
@@ -171,5 +155,44 @@ class DistributionModel
     public function setLabel(string $label)
     {
         $this->label = $label;
+    }
+
+    /**
+     * @return DistributionArchitecture
+     */
+    public function getArchitecture(): DistributionArchitecture
+    {
+        return $this->architecture;
+    }
+
+    /**
+     * @param DistributionArchitecture $architecture
+     */
+    public function setArchitecture($architecture)
+    {
+        if (!is_null($architecture)) {
+            $architecture = (string) $architecture;
+            $distributionArchitecture = new DistributionArchitecture($architecture);
+        } else {
+            $distributionArchitecture = null;
+        }
+        $this->setDistributionArchitecture($distributionArchitecture);
+    }
+
+    /**
+     * @param DistributionArchitecture|null $distributionArchitecture
+     * @throws \InvalidArgumentException
+     */
+    public function setDistributionArchitecture($distributionArchitecture)
+    {
+        if (!is_null($distributionArchitecture)) {
+            if (!$distributionArchitecture instanceof DistributionArchitecture) {
+                throw new \InvalidArgumentException(
+                    __METHOD__ .
+                    '/distributionArchitecture parameter must be null or an instance of DistributionArchitecture.'
+                );
+            }
+        }
+        $this->architecture = $distributionArchitecture;
     }
 }
