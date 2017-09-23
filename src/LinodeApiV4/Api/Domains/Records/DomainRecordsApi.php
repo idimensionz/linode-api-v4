@@ -143,7 +143,7 @@ class DomainRecordsApi extends LinodeApiEndpointAbstract
         $model->setPort($data['port']);
         $model->setService($data['service']);
         $model->setProtocol($data['protocol']);
-        $model->setTtl($data['ttl']);
+        $model->setTtl($data['ttl_sec']);
 
         return $model;
     }
