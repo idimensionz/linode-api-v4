@@ -92,7 +92,7 @@ class DomainRecordsApi extends LinodeApiEndpointAbstract
                 __METHOD__ . '/A domain record "type" value is required to create a domain record.'
             );
         }
-        $data = json_encode($domainRecordModel);
+        $data = $domainRecordModel->toArray();
         $httpResponse = $this->post("$domainId/records", $data);
 
         return $httpResponse->isSuccess();
@@ -105,7 +105,7 @@ class DomainRecordsApi extends LinodeApiEndpointAbstract
      */
     public function update(int $domainId, DomainRecordModel $domainRecordModel): bool
     {
-        $data = json_encode($domainRecordModel);
+        $data = $domainRecordModel->toArray();
         $domainRecordId = $domainRecordModel->getId();
         $httpResponse = $this->put("$domainId/records/$domainRecordId", $data);
 
