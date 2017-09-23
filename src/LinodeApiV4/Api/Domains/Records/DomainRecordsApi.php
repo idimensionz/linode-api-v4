@@ -75,7 +75,7 @@ class DomainRecordsApi extends LinodeApiEndpointAbstract
     {
         $httpResponse = $this->get("$domainId/records/$domainRecordId");
         $data = $httpResponse->getBodyJsonAsArray();
-        $domainRecordModel = $this->hydrate($data['data']);
+        $domainRecordModel = $this->hydrate($data);
 
         return $domainRecordModel;
     }
