@@ -56,8 +56,8 @@ class DomainRecordsApi extends LinodeApiEndpointAbstract
         $httpResponse = $this->get("$domainId/records");
         $data = $httpResponse->getBodyJsonAsArray();
         $domainRecords = [];
-        if (is_array($data) && !empty($data)) {
-            foreach ($data as $datum) {
+        if (is_array($data['data']) && !empty($data['data'])) {
+            foreach ($data['data'] as $datum) {
                 $domainRecord = $this->hydrate($datum);
                 $domainRecords[] = $domainRecord;
             }
@@ -75,7 +75,7 @@ class DomainRecordsApi extends LinodeApiEndpointAbstract
     {
         $httpResponse = $this->get("$domainId/records/$domainRecordId");
         $data = $httpResponse->getBodyJsonAsArray();
-        $domainRecordModel = $this->hydrate($data);
+        $domainRecordModel = $this->hydrate($data['data']);
 
         return $domainRecordModel;
     }
