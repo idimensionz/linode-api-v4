@@ -35,7 +35,7 @@ class DomainRecordsApi extends LinodeApiEndpointAbstract
 {
     const ENDPOINT = 'domains';
 
-    const DOMAIN_MODEL_CLASS_NAME = '\iDimensionz\LinodeApiV4\Api\Domains\DomainRecordModel';
+    const DOMAIN_MODEL_CLASS_NAME = '\iDimensionz\LinodeApiV4\Api\Domains\Records\DomainRecordModel';
 
     /**
      * DomainRecordsApi constructor.
