@@ -35,20 +35,12 @@ namespace iDimensionz\LinodeApiV4\Api\Domains\Records;
  */
 class DomainRecordModel
 {
-    const TYPE_A = 'A';
-    const TYPE_AAAA = 'AAAA';
-    const TYPE_NS = 'NS';
-    const TYPE_MX = 'MX';
-    const TYPE_CNAME = 'CNAME';
-    const TYPE_TXT = 'TXT';
-    const TYPE_SRV = 'SRV';
-
     /**
      * @var int|null
      */
     private $id;
     /**
-     * @var string|null
+     * @var DomainRecordType|null
      */
     private $type;
     /**
@@ -106,31 +98,6 @@ class DomainRecordModel
     }
 
     /**
-     * @return array
-     */
-    public function getValidTypes()
-    {
-        return [
-            self::TYPE_A,
-            self::TYPE_AAAA,
-            self::TYPE_NS,
-            self::TYPE_MX,
-            self::TYPE_CNAME,
-            self::TYPE_TXT,
-            self::TYPE_SRV
-        ];
-    }
-
-    /**
-     * @param string $type
-     * @return bool
-     */
-    public function isValidType(string $type): bool
-    {
-        return in_array($type, $this->getValidTypes());
-    }
-
-    /**
      * @return int|null
      */
     public function getId(): int
@@ -150,9 +117,9 @@ class DomainRecordModel
     }
 
     /**
-     * @return string|null
+     * @return DomainRecordType|null
      */
-    public function getType(): string
+    public function getType(): DomainRecordType
     {
         return $this->type;
     }
@@ -164,13 +131,25 @@ class DomainRecordModel
     public function setType($type)
     {
         if (!is_null($type)) {
-            if (!$this->isValidType($type)) {
-                throw new \InvalidArgumentException(
-                    __METHOD__ . '/type must be one of ' . implode(', ', $this->getValidTypes()) . '.'
-                );
-            }
+            $type = (string) $type;
+            $domainRecordType = new DomainRecordType($type);
+        } else {
+            $domainRecordType = null;
         }
-        $this->type = $type;
+        $this->setDomainRecordType($domainRecordType);
+    }
+
+    /**
+     * @param DomainRecordType|null $domainRecordType
+     */
+    public function setDomainRecordType($domainRecordType)
+    {
+        if (!is_null($domainRecordType) && !($domainRecordType instanceof DomainRecordType)) {
+            throw new \InvalidArgumentException(
+                __METHOD__ . '/domainRecordType parameter must be null or an instance of DomainRecordType.'
+            );
+        }
+        $this->type = $domainRecordType;
     }
 
     /**

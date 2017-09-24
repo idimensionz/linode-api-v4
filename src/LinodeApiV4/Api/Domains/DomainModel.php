@@ -382,12 +382,10 @@ class DomainModel
      */
     public function setDomainType($type)
     {
-        if (!is_null($type)) {
-            if (!$type instanceof DomainType) {
-                throw new \InvalidArgumentException(
-                    __METHOD__ . '/type parameter must be null or an instance of DomainType.'
-                );
-            }
+        if (!is_null($type) && !($type instanceof DomainType)) {
+            throw new \InvalidArgumentException(
+                __METHOD__ . '/type parameter must be null or an instance of DomainType.'
+            );
         }
         $this->type = $type;
     }
