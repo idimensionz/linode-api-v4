@@ -325,7 +325,7 @@ class DomainRecordModel
         $data = [];
         $type = $this->getType();
         if (!is_null($type)) {
-            $data['type'] = $this->getType();
+            $data['type'] = (string) $type;
         }
         $name = $this->getName();
         if (!is_null($name)) {
