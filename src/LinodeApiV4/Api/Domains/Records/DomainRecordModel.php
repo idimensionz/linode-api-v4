@@ -293,7 +293,7 @@ class DomainRecordModel
     /**
      * @return int|null
      */
-    public function getTtl(): int
+    public function getTtl()
     {
         return $this->ttl;
     }
