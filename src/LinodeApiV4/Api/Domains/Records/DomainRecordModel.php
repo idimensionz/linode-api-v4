@@ -100,7 +100,7 @@ class DomainRecordModel
     /**
      * @return int|null
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -119,7 +119,7 @@ class DomainRecordModel
     /**
      * @return DomainRecordType|null
      */
-    public function getType(): DomainRecordType
+    public function getType()
     {
         return $this->type;
     }
@@ -155,7 +155,7 @@ class DomainRecordModel
     /**
      * @return string|null
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -174,7 +174,7 @@ class DomainRecordModel
     /**
      * @return string|null
      */
-    public function getTarget(): string
+    public function getTarget()
     {
         return $this->target;
     }
@@ -193,7 +193,7 @@ class DomainRecordModel
     /**
      * @return int|null
      */
-    public function getPriority(): int
+    public function getPriority()
     {
         return $this->priority;
     }
@@ -212,7 +212,7 @@ class DomainRecordModel
     /**
      * @return int|null
      */
-    public function getWeight(): int
+    public function getWeight()
     {
         return $this->weight;
     }
@@ -231,7 +231,7 @@ class DomainRecordModel
     /**
      * @return int|null
      */
-    public function getPort(): int
+    public function getPort()
     {
         return $this->port;
     }
@@ -255,7 +255,7 @@ class DomainRecordModel
     /**
      * @return string|null
      */
-    public function getService(): string
+    public function getService()
     {
         return $this->service;
     }
@@ -274,7 +274,7 @@ class DomainRecordModel
     /**
      * @return string|null
      */
-    public function getProtocol(): string
+    public function getProtocol()
     {
         return $this->protocol;
     }
