@@ -28,64 +28,10 @@
 
 namespace iDimensionz\LinodeApiV4\Api\Domains;
 
-class DomainType
+use iDimensionz\EnumAbstract;
+
+class DomainType extends EnumAbstract
 {
     const MASTER = 'master';
     const SLAVE = 'slave';
-
-    /**
-     * @var string
-     */
-    private $type;
-
-    public function __construct($type)
-    {
-        $this->setType($type);
-    }
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string $type
-     */
-    public function setType($type)
-    {
-        if (!$this->isValidType($type)) {
-            throw new \InvalidArgumentException(
-                __METHOD__ . '/type parameter must be one of ' . implode(', ', $this->getValidTypes())
-            );
-        }
-        $this->type = $type;
-    }
-
-    /**
-     * @return array
-     */
-    public function getValidTypes()
-    {
-        return array(self::MASTER, self::SLAVE);
-    }
-
-    /**
-     * @param string $type
-     * @return bool
-     */
-    public function isValidType($type)
-    {
-        return in_array($type, $this->getValidTypes());
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getType();
-    }
 }

@@ -28,8 +28,9 @@
 
 namespace iDimensionz\LinodeApiV4\Api\Domains\Records;
 
+use iDimensionz\EnumAbstract;
 
-class DomainRecordType
+class DomainRecordType extends EnumAbstract
 {
     const TYPE_A = 'A';
     const TYPE_AAAA = 'AAAA';
@@ -38,73 +39,4 @@ class DomainRecordType
     const TYPE_CNAME = 'CNAME';
     const TYPE_TXT = 'TXT';
     const TYPE_SRV = 'SRV';
-
-    /**
-     * @var string
-     */
-    private $recordType;
-
-    /**
-     * DomainRecordType constructor.
-     * @param string $recordType
-     */
-    public function __construct(string $recordType)
-    {
-        $this->setRecordType($recordType);
-    }
-
-    /**
-     * @return array
-     */
-    public function getValidRecordTypes()
-    {
-        return [
-            self::TYPE_A,
-            self::TYPE_AAAA,
-            self::TYPE_NS,
-            self::TYPE_MX,
-            self::TYPE_CNAME,
-            self::TYPE_TXT,
-            self::TYPE_SRV
-        ];
-    }
-
-    /**
-     * @param string $type
-     * @return bool
-     */
-    public function isValidRecordType(string $type): bool
-    {
-        return in_array($type, $this->getValidRecordTypes());
-    }
-
-    /**
-     * @return string
-     */
-    public function getRecordType(): string
-    {
-        return $this->recordType;
-    }
-
-    /**
-     * @param string $recordType
-     * @throws \InvalidArgumentException
-     */
-    public function setRecordType(string $recordType)
-    {
-        if (!$this->isValidRecordType($recordType)) {
-            throw new \InvalidArgumentException(
-                __METHOD__ . '/recordType parameter must be one of ' . implode(', ', $this->getValidRecordTypes())
-            );
-        }
-        $this->recordType = $recordType;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->getRecordType();
-    }
 }

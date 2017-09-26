@@ -28,66 +28,11 @@
 
 namespace iDimensionz\LinodeApiV4\Api\Domains;
 
-class DomainStatus
+use iDimensionz\EnumAbstract;
+
+class DomainStatus extends EnumAbstract
 {
     const ACTIVE = 'active';
     const DISABLED = 'disabled';
     const EDIT_MODE = 'edit_mode';
-
-    /**
-     * @var string
-     */
-    private $status;
-
-    /**
-     * DomainStatus constructor.
-     * @param string $status
-     */
-    public function __construct($status)
-    {
-        $this->setStatus($status);
-    }
-
-    /**
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param string $status
-     */
-    public function setStatus($status)
-    {
-        if (!$this->isValidStatus($status)) {
-            throw new \InvalidArgumentException(
-                __METHOD__ . '/status must be one of ' . implode(', ', $this->getValidStatuses())
-            );
-        }
-        $this->status = $status;
-    }
-
-    /**
-     * @param string $status
-     * @return bool
-     */
-    public function isValidStatus($status)
-    {
-        return in_array((string) $status, $this->getValidStatuses());
-    }
-
-    /**
-     * @return array
-     */
-    public function getValidStatuses()
-    {
-        return [self::ACTIVE, self::DISABLED, self::EDIT_MODE];
-    }
-
-    public function __toString()
-    {
-        return $this->getStatus();
-    }
 }

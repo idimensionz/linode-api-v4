@@ -149,7 +149,7 @@ class DomainModelUnitTest extends TestCase
         $this->hasValidValues();
         $actualStatus = $this->domainModel->getStatus();
         $this->assertInstanceOf('\iDimensionz\LinodeApiV4\Api\Domains\DomainStatus', $actualStatus);
-        $this->assertEquals(self::VALID_STATUS, $actualStatus->getStatus());
+        $this->assertEquals(self::VALID_STATUS, $actualStatus->getValue());
     }
 
     public function testMasterIpsGetterAndSetter()
@@ -181,7 +181,7 @@ class DomainModelUnitTest extends TestCase
         $this->hasValidValues();
         $actualType = $this->domainModel->getType();
         $this->assertInstanceOf('\iDimensionz\LinodeApiV4\Api\Domains\DomainType', $actualType);
-        $this->assertEquals(self::VALID_TYPE, $actualType->getType());
+        $this->assertEquals(self::VALID_TYPE, $actualType->getValue());
     }
 
     /**
