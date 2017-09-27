@@ -1,7 +1,7 @@
 <?php
 /*
  * iDimensionz/{linode-api-v4}
- * DomainStatus.php
+ * DomainType.php
  *  
  * The MIT License (MIT)
  * 
@@ -30,9 +30,8 @@ namespace iDimensionz\LinodeApiV4\Api\Domains;
 
 use iDimensionz\EnumAbstract;
 
-class DomainStatus extends EnumAbstract
+class DomainTypeEnum extends EnumAbstract
 {
-    const ACTIVE = 'active';
-    const DISABLED = 'disabled';
-    const EDIT_MODE = 'edit_mode';
+    const MASTER = 'master';
+    const SLAVE = 'slave';
 }

@@ -96,7 +96,7 @@ class KernelsApi extends LinodeApiEndpointAbstract
         $model->setIsKvmCompatible($data['kvm']);
         $model->setLabel($data['label']);
         $model->setVersion($data['version']);
-        $model->setIsX64($data['x64']);
+        $model->setArchitecture($data['x64']);
         $model->setIsCurrent($data['current']);
         $model->setIsDeprecated($data['deprecated']);
         $model->setIsLatest($data['latest']);

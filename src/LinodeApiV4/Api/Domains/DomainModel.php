@@ -63,7 +63,7 @@ class DomainModel
      */
     private $timeToLiveInterval;
     /**
-     * @var DomainStatus|null
+     * @var DomainStatusEnum|null
      */
     private $status;
     /**
@@ -79,7 +79,7 @@ class DomainModel
      */
     private $group;
     /**
-     * @var DomainType|null
+     * @var DomainTypeEnum|null
      */
     private $type;
 
@@ -258,7 +258,7 @@ class DomainModel
     }
 
     /**
-     * @return DomainStatus|null
+     * @return DomainStatusEnum|null
      */
     public function getStatus()
     {
@@ -272,7 +272,7 @@ class DomainModel
     {
         if (!is_null($status)) {
             $status = (string) $status;
-            $domainStatus = new DomainStatus($status);
+            $domainStatus = new DomainStatusEnum($status);
         } else {
             $domainStatus = null;
         }
@@ -280,18 +280,16 @@ class DomainModel
     }
 
     /**
-     * @param DomainStatus|null $domainStatus
+     * @param DomainStatusEnum|null $domainStatusEnum
      */
-    public function setDomainStatus($domainStatus)
+    public function setDomainStatus($domainStatusEnum)
     {
-        if (!is_null($domainStatus)) {
-            if (!$domainStatus instanceof DomainStatus) {
-                throw new \InvalidArgumentException(
-                    __METHOD__ . '/domainStatus parameter must be null or an instance of DomainStatus.'
-                );
-            }
+        if (!is_null($domainStatusEnum) && !$domainStatusEnum instanceof DomainStatusEnum) {
+            throw new \InvalidArgumentException(
+                __METHOD__ . '/domainStatus parameter must be null or an instance of DomainStatusEnum.'
+            );
         }
-        $this->status = $domainStatus;
+        $this->status = $domainStatusEnum;
     }
 
     /**
@@ -356,7 +354,7 @@ class DomainModel
     }
 
     /**
-     * @return DomainType|null
+     * @return DomainTypeEnum|null
      */
     public function getType()
     {
@@ -370,7 +368,7 @@ class DomainModel
     {
         if (!is_null($type)) {
             $type = (string) $type;
-            $domainType = new DomainType($type);
+            $domainType = new DomainTypeEnum($type);
         } else {
             $domainType = null;
         }
@@ -378,16 +376,16 @@ class DomainModel
     }
 
     /**
-     * @param DomainType|null $type
+     * @param DomainTypeEnum|null $domainTypeEnum
      */
-    public function setDomainType($type)
+    public function setDomainType($domainTypeEnum)
     {
-        if (!is_null($type) && !($type instanceof DomainType)) {
+        if (!is_null($domainTypeEnum) && !($domainTypeEnum instanceof DomainTypeEnum)) {
             throw new \InvalidArgumentException(
-                __METHOD__ . '/type parameter must be null or an instance of DomainType.'
+                __METHOD__ . '/type parameter must be null or an instance of DomainTypeEnum.'
             );
         }
-        $this->type = $type;
+        $this->type = $domainTypeEnum;
     }
 
     /**

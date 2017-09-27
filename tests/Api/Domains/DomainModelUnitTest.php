@@ -29,8 +29,8 @@
 namespace iDimensionz\Tests\Api\Domains;
 
 use iDimensionz\LinodeApiV4\Api\Domains\DomainModel;
-use iDimensionz\LinodeApiV4\Api\Domains\DomainStatus;
-use iDimensionz\LinodeApiV4\Api\Domains\DomainType;
+use iDimensionz\LinodeApiV4\Api\Domains\DomainStatusEnum;
+use iDimensionz\LinodeApiV4\Api\Domains\DomainTypeEnum;
 use PHPUnit\Framework\TestCase;
 
 class DomainModelUnitTest extends TestCase
@@ -46,8 +46,8 @@ class DomainModelUnitTest extends TestCase
     const VALID_MASTER_IPS = ['127.0.0.1'];
     const VALID_AXFR_IPS = ['104.237.137.10'];
     const VALID_GROUP = 'test';
-    const VALID_TYPE = DomainType::MASTER;
-    const VALID_STATUS = DomainStatus::DISABLED;
+    const VALID_TYPE = DomainTypeEnum::MASTER;
+    const VALID_STATUS = DomainStatusEnum::DISABLED;
 
     /**
      * @var DomainModel
@@ -148,7 +148,7 @@ class DomainModelUnitTest extends TestCase
     {
         $this->hasValidValues();
         $actualStatus = $this->domainModel->getStatus();
-        $this->assertInstanceOf('\iDimensionz\LinodeApiV4\Api\Domains\DomainStatus', $actualStatus);
+        $this->assertInstanceOf('\iDimensionz\LinodeApiV4\Api\Domains\DomainStatusEnum', $actualStatus);
         $this->assertEquals(self::VALID_STATUS, $actualStatus->getValue());
     }
 
@@ -180,7 +180,7 @@ class DomainModelUnitTest extends TestCase
     {
         $this->hasValidValues();
         $actualType = $this->domainModel->getType();
-        $this->assertInstanceOf('\iDimensionz\LinodeApiV4\Api\Domains\DomainType', $actualType);
+        $this->assertInstanceOf('\iDimensionz\LinodeApiV4\Api\Domains\DomainTypeEnum', $actualType);
         $this->assertEquals(self::VALID_TYPE, $actualType->getValue());
     }
 

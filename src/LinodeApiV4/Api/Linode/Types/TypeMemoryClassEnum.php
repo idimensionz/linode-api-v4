@@ -1,7 +1,7 @@
 <?php
 /*
  * iDimensionz/{linode-api-v4}
- * DomainType.php
+ * TypeMemoryClassEnum.php
  *  
  * The MIT License (MIT)
  * 
@@ -26,12 +26,13 @@
  * SOFTWARE.
 */
 
-namespace iDimensionz\LinodeApiV4\Api\Domains;
+namespace iDimensionz\LinodeApiV4\Api\Linode\Types;
 
 use iDimensionz\EnumAbstract;
 
-class DomainType extends EnumAbstract
+class TypeMemoryClassEnum extends EnumAbstract
 {
-    const MASTER = 'master';
-    const SLAVE = 'slave';
+    const MEMORY_CLASS_NANODE = 'nanode';
+    const MEMORY_CLASS_STANDARD = 'standard';
+    const MEMORY_CLASS_HIGHMEM = 'highmem';
 }

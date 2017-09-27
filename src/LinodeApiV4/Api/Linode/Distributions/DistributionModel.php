@@ -28,6 +28,8 @@
 
 namespace iDimensionz\LinodeApiV4\Api\Linode\Distributions;
 
+use iDimensionz\LinodeApiV4\Api\Linode\ArchitectureEnum;
+
 class DistributionModel
 {
     /**
@@ -55,7 +57,7 @@ class DistributionModel
      */
     private $vendor;
     /**
-     * @var DistributionArchitecture
+     * @var ArchitectureEnum
      */
     private $architecture;
 
@@ -158,21 +160,21 @@ class DistributionModel
     }
 
     /**
-     * @return DistributionArchitecture
+     * @return ArchitectureEnum
      */
-    public function getArchitecture(): DistributionArchitecture
+    public function getArchitecture(): ArchitectureEnum
     {
         return $this->architecture;
     }
 
     /**
-     * @param DistributionArchitecture $architecture
+     * @param string|null $architecture
      */
     public function setArchitecture($architecture)
     {
         if (!is_null($architecture)) {
             $architecture = (string) $architecture;
-            $distributionArchitecture = new DistributionArchitecture($architecture);
+            $distributionArchitecture = new ArchitectureEnum($architecture);
         } else {
             $distributionArchitecture = null;
         }
@@ -180,19 +182,17 @@ class DistributionModel
     }
 
     /**
-     * @param DistributionArchitecture|null $distributionArchitecture
+     * @param ArchitectureEnum|null $architectureEnum
      * @throws \InvalidArgumentException
      */
-    public function setDistributionArchitecture($distributionArchitecture)
+    public function setDistributionArchitecture($architectureEnum)
     {
-        if (!is_null($distributionArchitecture)) {
-            if (!$distributionArchitecture instanceof DistributionArchitecture) {
-                throw new \InvalidArgumentException(
-                    __METHOD__ .
-                    '/distributionArchitecture parameter must be null or an instance of DistributionArchitecture.'
-                );
-            }
+        if (!is_null($architectureEnum) && !$architectureEnum instanceof ArchitectureEnum) {
+            throw new \InvalidArgumentException(
+                __METHOD__ .
+                '/distributionArchitecture parameter must be null or an instance of ArchitectureEnum.'
+            );
         }
-        $this->architecture = $distributionArchitecture;
+        $this->architecture = $architectureEnum;
     }
 }

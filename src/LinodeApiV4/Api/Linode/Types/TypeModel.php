@@ -46,7 +46,7 @@ class TypeModel
      */
     private $backupsPrice;
     /**
-     * @var string
+     * @var TypeMemoryClassEnum
      */
     private $memoryClass;
     /**
@@ -127,28 +127,38 @@ class TypeModel
     }
 
     /**
-     * @return string
+     * @return TypeMemoryClassEnum
      */
-    public function getMemoryClass(): string
+    public function getMemoryClass(): TypeMemoryClassEnum
     {
         return $this->memoryClass;
     }
 
     /**
-     * @param string $memoryClass
+     * @param string|null $memoryClass
      */
-    public function setMemoryClass(string $memoryClass)
+    public function setMemoryClass($memoryClass)
     {
-        if (!empty($memoryClass)) {
-            $validMemoryClasses = $this->getValidMemoryClasses();
-
-            if (!in_array($memoryClass, $validMemoryClasses)) {
-                throw new \InvalidArgumentException(__METHOD__ . '/memoryClass parameter must be one of ' .
-                    implode(', ', $validMemoryClasses)
-                );
-            }
+        if (!is_null($memoryClass)) {
+            $memoryClass = (string) $memoryClass;
+            $typeMemoryClass = new TypeMemoryClassEnum($memoryClass);
+        } else {
+            $typeMemoryClass = null;
         }
-        $this->memoryClass = $memoryClass;
+        $this->setTypeMemoryClass($typeMemoryClass);
+    }
+
+    /**
+     * @param TypeMemoryClassEnum|null $typeMemoryClass
+     */
+    public function setTypeMemoryClass($typeMemoryClass)
+    {
+        if (!is_null($typeMemoryClass) && !$typeMemoryClass instanceof TypeMemoryClassEnum) {
+            throw new \InvalidArgumentException(
+                __METHOD__ . '/typeMemoryClass parameter must be null or an instance of TypeMemoryClassEnum.'
+            );
+        }
+        $this->memoryClass = $typeMemoryClass;
     }
 
     /**

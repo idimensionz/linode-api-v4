@@ -28,6 +28,8 @@
 
 namespace iDimensionz\LinodeApiV4\Api\Linode\Kernels;
 
+use iDimensionz\LinodeApiV4\Api\Linode\ArchitectureEnum;
+
 class KernelModel
 {
     /**
@@ -55,9 +57,9 @@ class KernelModel
      */
     private $version;
     /**
-     * @var bool
+     * @var ArchitectureEnum
      */
-    private $isX64;
+    private $architecture;
     /**
      * @var bool
      */
@@ -168,19 +170,38 @@ class KernelModel
     }
 
     /**
-     * @return bool
+     * @return ArchitectureEnum
      */
-    public function isX64(): bool
+    public function getArchitecture(): ArchitectureEnum
     {
-        return $this->isX64;
+        return $this->architecture;
     }
 
     /**
-     * @param bool $isX64
+     * @param string|null $architecture
      */
-    public function setIsX64(bool $isX64)
+    public function setArchitecture($architecture)
     {
-        $this->isX64 = $isX64;
+        if (!is_null($architecture)) {
+            $architecture = (string) $architecture;
+            $kernelArchitecture = new ArchitectureEnum($architecture);
+        } else {
+            $kernelArchitecture = null;
+        }
+        $this->setKernelArchitecture($kernelArchitecture);
+    }
+
+    /**
+     * @param ArchitectureEnum|null $architectureEnum
+     */
+    public function setKernelArchitecture($architectureEnum)
+    {
+        if (!is_null($architectureEnum) && !$architectureEnum instanceof ArchitectureEnum) {
+            throw new \InvalidArgumentException(
+                __METHOD__ . '/kernalArchitecture parameter must be null or an instance of Architecture.'
+            );
+        }
+        $this->architecture = $architectureEnum;
     }
 
     /**
